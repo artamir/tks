@@ -74,6 +74,7 @@ F=RF325     |Reg Action Flag     |N   |1     |0
 F=RF331     |Reg Action Flag     |N   |1     |0        
 F=RF335     |Reg Action Flag     |N   |1     |0        
 F=SP265     |(P)Автор            |C   |9     |0        
+F=SP343     |(P)СуммаДокумента   |N   |16    |2        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=IDDOC    |Id Doc        |0     |IDDOC                                                       |IDDOC      
@@ -82,6 +83,7 @@ I=DOCNO    |Prefix+No     |0     |DNPREFIX,DOCNO(UPPER)                         
 I=DOCTYPE  |Type+Date+Time|0     |IDDOCDEF,DATE,TIME,IDDOC                                    |DOCTYPE    
 I=JOURNAL  |Journal+Date+T|0     |IDJOURNAL,DATE,TIME,IDDOC                                   |JOURNAL    
 I=VIA265   |VIA265        |0     |SP265,DATE,TIME,IDDOC                                       |VIA265     
+I=VIA343   |VIA343        |0     |SP343,DATE,TIME,IDDOC                                       |VIA343     
 #
 #===============================================================================
 #==TABLE no 4      : Ссылки документов
@@ -633,7 +635,9 @@ F=SP112     |(P)Бригадир         |C   |9     |0
 F=SP113     |(P)КатегорияЦен     |C   |9     |0        
 F=SP115     |(P)Количество       |N   |11    |3        
 F=SP117     |(P)Сумма            |N   |16    |2        
-F=SP266     |(P)Комментарий      |C   |100   |0        
+F=SP340     |(P)Комментарий      |C   |100   |0        
+F=SP342     |(P)Основание        |C   |64    |0        
+F=SP341     |(P)ОтклДвижения     |N   |2     |0        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
@@ -676,7 +680,9 @@ F=SP131     |(P)ОстатокКассыНаКон|N   |11    |2
 F=SP132     |(P)ОплатаДворнику   |N   |9     |2        
 F=SP134     |(P)Количество       |N   |11    |3        
 F=SP136     |(P)Сумма            |N   |16    |2        
-F=SP266     |(P)Комментарий      |C   |100   |0        
+F=SP340     |(P)Комментарий      |C   |100   |0        
+F=SP342     |(P)Основание        |C   |64    |0        
+F=SP341     |(P)ОтклДвижения     |N   |2     |0        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
@@ -705,7 +711,9 @@ T=DH144   |Документ РасчетЗП             |A          |DH144      |1
 # Name      |Descr               |Type|Length|Precision
 F=IDDOC     |ID Document's       |C   |9     |0        
 F=SP139     |(P)Аванс            |N   |2     |0        
-F=SP266     |(P)Комментарий      |C   |100   |0        
+F=SP340     |(P)Комментарий      |C   |100   |0        
+F=SP342     |(P)Основание        |C   |64    |0        
+F=SP341     |(P)ОтклДвижения     |N   |2     |0        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
@@ -736,7 +744,9 @@ F=SP145     |(P)Бригадир         |C   |9     |0
 F=SP146     |(P)ОперацияДокумента|C   |9     |0        
 F=SP147     |(P)Отправитель      |C   |9     |0        
 F=SP148     |(P)Получатель       |C   |9     |0        
-F=SP266     |(P)Комментарий      |C   |100   |0        
+F=SP340     |(P)Комментарий      |C   |100   |0        
+F=SP342     |(P)Основание        |C   |64    |0        
+F=SP341     |(P)ОтклДвижения     |N   |2     |0        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
@@ -765,7 +775,9 @@ F=SP152     |(P)Бригадир         |C   |9     |0
 F=SP153     |(P)ОперацияДокумента|C   |9     |0        
 F=SP154     |(P)Отправитель      |C   |9     |0        
 F=SP155     |(P)Получатель       |C   |9     |0        
-F=SP266     |(P)Комментарий      |C   |100   |0        
+F=SP340     |(P)Комментарий      |C   |100   |0        
+F=SP342     |(P)Основание        |C   |64    |0        
+F=SP341     |(P)ОтклДвижения     |N   |2     |0        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
@@ -794,7 +806,9 @@ F=IDDOC     |ID Document's       |C   |9     |0
 F=SP160     |(P)Касса            |C   |9     |0        
 F=SP161     |(P)ОперацияДокумента|C   |9     |0        
 F=SP163     |(P)Сумма            |N   |16    |2        
-F=SP266     |(P)Комментарий      |C   |100   |0        
+F=SP340     |(P)Комментарий      |C   |100   |0        
+F=SP342     |(P)Основание        |C   |64    |0        
+F=SP341     |(P)ОтклДвижения     |N   |2     |0        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
@@ -820,7 +834,9 @@ T=DH175   |Документ ВводРасчетов         |A          |DH175      |1
 #-----Fields-------
 # Name      |Descr               |Type|Length|Precision
 F=IDDOC     |ID Document's       |C   |9     |0        
-F=SP266     |(P)Комментарий      |C   |100   |0        
+F=SP340     |(P)Комментарий      |C   |100   |0        
+F=SP342     |(P)Основание        |C   |64    |0        
+F=SP341     |(P)ОтклДвижения     |N   |2     |0        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
@@ -854,7 +870,9 @@ T=DH181   |Документ Переоценка           |A          |DH181      |1
 F=IDDOC     |ID Document's       |C   |9     |0        
 F=SP176     |(P)Киоск            |C   |9     |0        
 F=SP177     |(P)КатегорияЦен     |C   |9     |0        
-F=SP266     |(P)Комментарий      |C   |100   |0        
+F=SP340     |(P)Комментарий      |C   |100   |0        
+F=SP342     |(P)Основание        |C   |64    |0        
+F=SP341     |(P)ОтклДвижения     |N   |2     |0        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
@@ -887,7 +905,9 @@ F=SP185     |(P)ОперацияДокумента|C   |9     |0
 F=SP186     |(P)Бригадир         |C   |9     |0        
 F=SP188     |(P)Количество       |N   |11    |3        
 F=SP190     |(P)Сумма            |N   |16    |2        
-F=SP266     |(P)Комментарий      |C   |100   |0        
+F=SP340     |(P)Комментарий      |C   |100   |0        
+F=SP342     |(P)Основание        |C   |64    |0        
+F=SP341     |(P)ОтклДвижения     |N   |2     |0        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
@@ -923,7 +943,9 @@ F=SP197     |(P)Бригадир         |C   |9     |0
 F=SP198     |(P)ОперацияДокумента|C   |9     |0        
 F=SP200     |(P)Количество       |N   |11    |3        
 F=SP202     |(P)Сумма            |N   |11    |2        
-F=SP266     |(P)Комментарий      |C   |100   |0        
+F=SP340     |(P)Комментарий      |C   |100   |0        
+F=SP342     |(P)Основание        |C   |64    |0        
+F=SP341     |(P)ОтклДвижения     |N   |2     |0        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
@@ -952,9 +974,10 @@ T=DH209   |Документ КорректировкаЗаписейР|A          |DH209      |1
 # Name      |Descr               |Type|Length|Precision
 F=IDDOC     |ID Document's       |C   |9     |0        
 F=SP205     |(P)ДокументОснование|C   |13    |0        
-F=SP206     |(P)ВклДвижения      |N   |2     |0        
 F=SP207     |(P)ХранилищеДвижений|C   |9     |0        
-F=SP266     |(P)Комментарий      |C   |100   |0        
+F=SP340     |(P)Комментарий      |C   |100   |0        
+F=SP342     |(P)Основание        |C   |64    |0        
+F=SP341     |(P)ОтклДвижения     |N   |2     |0        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
