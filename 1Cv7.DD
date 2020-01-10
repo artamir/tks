@@ -228,7 +228,24 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 13     : Справочник Киоски
+#==TABLE no 13     : Справочник КатегорииЦен
+# Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
+T=SC95    |Справочник КатегорииЦен       |A          |SC95       |1         
+#-----Fields-------
+# Name      |Descr               |Type|Length|Precision
+F=ID        |ID object           |C   |9     |0        
+F=CODE      |object code         |C   |5     |0        
+F=DESCR     |object description  |C   |25    |0        
+F=ISMARK    |Flag Object is Marke|C   |1     |0        
+F=VERSTAMP  |Version stamp       |C   |6     |0        
+#----Indexes------
+# Name     |Descr         |Unique|Indexed fields                                              |DBName     
+I=IDD      |of ID         |0     |ID                                                          |IDD        
+I=CODE     |of CODE       |0     |CODE(UPPER)                                                 |CODE       
+I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
+#
+#===============================================================================
+#==TABLE no 14     : Справочник Киоски
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC45    |Справочник Киоски             |A          |SC45       |1         
 #-----Fields-------
@@ -257,7 +274,7 @@ I=VI40     |VI40          |0     |SP40                                          
 I=VIP40    |VIP40         |0     |PARENTID,ISFOLDER,SP40                                      |VIP40      
 #
 #===============================================================================
-#==TABLE no 14     : Справочник Контрагенты
+#==TABLE no 15     : Справочник Контрагенты
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC47    |Справочник Контрагенты        |A          |SC47       |1         
 #-----Fields-------
@@ -278,7 +295,7 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 15     : Справочник МестаХранения
+#==TABLE no 16     : Справочник МестаХранения
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC49    |Справочник МестаХранения      |A          |SC49       |1         
 #-----Fields-------
@@ -299,7 +316,7 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 16     : Справочник МоделиМК
+#==TABLE no 17     : Справочник МоделиМК
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC52    |Справочник МоделиМК           |A          |SC52       |1         
 #-----Fields-------
@@ -317,7 +334,7 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 17     : Справочник МорозильныеКамеры
+#==TABLE no 18     : Справочник МорозильныеКамеры
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC55    |Справочник МорозильныеКамеры  |A          |SC55       |1         
 #-----Fields-------
@@ -335,7 +352,7 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 18     : Справочник НастройкиОбмена
+#==TABLE no 19     : Справочник НастройкиОбмена
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC58    |Справочник НастройкиОбмена    |A          |SC58       |1         
 #-----Fields-------
@@ -353,7 +370,7 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 19     : Справочник Номенклатура
+#==TABLE no 20     : Справочник Номенклатура
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC69    |Справочник Номенклатура       |A          |SC69       |1         
 #-----Fields-------
@@ -383,7 +400,7 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 20     : Справочник ПериодыРаботы
+#==TABLE no 21     : Справочник ПериодыРаботы
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC72    |Справочник ПериодыРаботы      |A          |SC72       |1         
 #-----Fields-------
@@ -401,7 +418,7 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 21     : Справочник Пользователи
+#==TABLE no 22     : Справочник Пользователи
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC74    |Справочник Пользователи       |A          |SC74       |1         
 #-----Fields-------
@@ -418,7 +435,26 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 22     : Справочник ПриборыУчета
+#==TABLE no 23     : Справочник ПраваДоступа
+# Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
+T=SC349   |Справочник ПраваДоступа       |A          |SC349      |1         
+#-----Fields-------
+# Name      |Descr               |Type|Length|Precision
+F=ID        |ID object           |C   |9     |0        
+F=PARENTEXT |Parent in other tabl|C   |9     |0        
+F=ISMARK    |Flag Object is Marke|C   |1     |0        
+F=VERSTAMP  |Version stamp       |C   |6     |0        
+F=SP353     |(P)ВидПраваДоступа  |C   |9     |0        
+F=SP354     |(P)Активность       |N   |2     |0        
+#----Indexes------
+# Name     |Descr         |Unique|Indexed fields                                              |DBName     
+I=IDD      |of ID         |0     |ID                                                          |IDD        
+I=PCODE    |of PARENT     |0     |PARENTEXT                                                   |PCODE      
+I=VI353    |VI353         |0     |SP353                                                       |VI353      
+I=VIP353   |VIP353        |0     |PARENTEXT,SP353                                             |VIP353     
+#
+#===============================================================================
+#==TABLE no 24     : Справочник ПриборыУчета
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC77    |Справочник ПриборыУчета       |A          |SC77       |1         
 #-----Fields-------
@@ -438,7 +474,7 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 23     : Справочник Продавцы
+#==TABLE no 25     : Справочник Продавцы
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC81    |Справочник Продавцы           |A          |SC81       |1         
 #-----Fields-------
@@ -460,7 +496,7 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 24     : Справочник Производители
+#==TABLE no 26     : Справочник Производители
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC83    |Справочник Производители      |A          |SC83       |1         
 #-----Fields-------
@@ -477,7 +513,7 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 25     : Справочник Районы
+#==TABLE no 27     : Справочник Районы
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC85    |Справочник Районы             |A          |SC85       |1         
 #-----Fields-------
@@ -494,7 +530,28 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 26     : Справочник СоответствияОбъектов
+#==TABLE no 28     : Справочник Расчеты
+# Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
+T=SC102   |Справочник Расчеты            |A          |SC102      |1         
+#-----Fields-------
+# Name      |Descr               |Type|Length|Precision
+F=ID        |ID object           |C   |9     |0        
+F=CODE      |object code         |C   |5     |0        
+F=DESCR     |object description  |C   |25    |0        
+F=PARENTEXT |Parent in other tabl|C   |9     |0        
+F=ISMARK    |Flag Object is Marke|C   |1     |0        
+F=VERSTAMP  |Version stamp       |C   |6     |0        
+F=SP97      |(P)ВидРасчета       |C   |9     |0        
+#----Indexes------
+# Name     |Descr         |Unique|Indexed fields                                              |DBName     
+I=IDD      |of ID         |0     |ID                                                          |IDD        
+I=PCODE    |of PARENT and |0     |PARENTEXT,CODE(UPPER)                                       |PCODE      
+I=PDESCR   |of PARENT and |0     |PARENTEXT,DESCR(UPPER)                                      |PDESCR     
+I=CODE     |of CODE       |0     |CODE(UPPER)                                                 |CODE       
+I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
+#
+#===============================================================================
+#==TABLE no 29     : Справочник СоответствияОбъектов
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC89    |Справочник СоответствияОбъекто|A          |SC89       |1         
 #-----Fields-------
@@ -516,7 +573,7 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 27     : Справочник ТипыМК
+#==TABLE no 30     : Справочник ТипыМК
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC91    |Справочник ТипыМК             |A          |SC91       |1         
 #-----Fields-------
@@ -533,7 +590,7 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 28     : Справочник ФизЛица
+#==TABLE no 31     : Справочник ФизЛица
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC93    |Справочник ФизЛица            |A          |SC93       |1         
 #-----Fields-------
@@ -554,45 +611,20 @@ I=CODE     |of CODE       |0     |CODE(UPPER)                                   
 I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 29     : Справочник КатегорииЦен
+#==TABLE no 32     : Справочник ХранилищеЗначения
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
-T=SC95    |Справочник КатегорииЦен       |A          |SC95       |1         
+T=SC109   |Справочник ХранилищеЗначения  |A          |SC109      |1         
 #-----Fields-------
 # Name      |Descr               |Type|Length|Precision
 F=ID        |ID object           |C   |9     |0        
-F=CODE      |object code         |C   |5     |0        
-F=DESCR     |object description  |C   |25    |0        
 F=ISMARK    |Flag Object is Marke|C   |1     |0        
 F=VERSTAMP  |Version stamp       |C   |6     |0        
 #----Indexes------
 # Name     |Descr         |Unique|Indexed fields                                              |DBName     
 I=IDD      |of ID         |0     |ID                                                          |IDD        
-I=CODE     |of CODE       |0     |CODE(UPPER)                                                 |CODE       
-I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
 #
 #===============================================================================
-#==TABLE no 30     : Справочник Расчеты
-# Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
-T=SC102   |Справочник Расчеты            |A          |SC102      |1         
-#-----Fields-------
-# Name      |Descr               |Type|Length|Precision
-F=ID        |ID object           |C   |9     |0        
-F=CODE      |object code         |C   |5     |0        
-F=DESCR     |object description  |C   |25    |0        
-F=PARENTEXT |Parent in other tabl|C   |9     |0        
-F=ISMARK    |Flag Object is Marke|C   |1     |0        
-F=VERSTAMP  |Version stamp       |C   |6     |0        
-F=SP97      |(P)ВидРасчета       |C   |9     |0        
-#----Indexes------
-# Name     |Descr         |Unique|Indexed fields                                              |DBName     
-I=IDD      |of ID         |0     |ID                                                          |IDD        
-I=PCODE    |of PARENT and |0     |PARENTEXT,CODE(UPPER)                                       |PCODE      
-I=PDESCR   |of PARENT and |0     |PARENTEXT,DESCR(UPPER)                                      |PDESCR     
-I=CODE     |of CODE       |0     |CODE(UPPER)                                                 |CODE       
-I=DESCR    |of DESCR      |0     |DESCR(UPPER)                                                |DESCR      
-#
-#===============================================================================
-#==TABLE no 31     : Справочник Цены
+#==TABLE no 33     : Справочник Цены
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=SC106   |Справочник Цены               |A          |SC106      |1         
 #-----Fields-------
@@ -610,20 +642,7 @@ I=VI103    |VI103         |0     |SP103                                         
 I=VIP103   |VIP103        |0     |PARENTEXT,SP103                                             |VIP103     
 #
 #===============================================================================
-#==TABLE no 32     : Справочник ХранилищеЗначения
-# Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
-T=SC109   |Справочник ХранилищеЗначения  |A          |SC109      |1         
-#-----Fields-------
-# Name      |Descr               |Type|Length|Precision
-F=ID        |ID object           |C   |9     |0        
-F=ISMARK    |Flag Object is Marke|C   |1     |0        
-F=VERSTAMP  |Version stamp       |C   |6     |0        
-#----Indexes------
-# Name     |Descr         |Unique|Indexed fields                                              |DBName     
-I=IDD      |of ID         |0     |ID                                                          |IDD        
-#
-#===============================================================================
-#==TABLE no 33     : Документ Развозка
+#==TABLE no 34     : Документ Развозка
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DH120   |Документ Развозка             |A          |DH120      |1         
 #-----Fields-------
@@ -643,7 +662,7 @@ F=SP341     |(P)ОтклДвижения     |N   |2     |0
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
 #
 #===============================================================================
-#==TABLE no 34     : Документ (Мн.ч.) Развозка
+#==TABLE no 35     : Документ (Мн.ч.) Развозка
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DT120   |Документ (Мн.ч.) Развозка     |A          |DT120      |1         
 #-----Fields-------
@@ -660,7 +679,7 @@ F=SP118     |(P)МестоХранения    |C   |9     |0
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO                                                |IDLINE     
 #
 #===============================================================================
-#==TABLE no 35     : Документ ЗакрытиеСмены
+#==TABLE no 36     : Документ ЗакрытиеСмены
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DH138   |Документ ЗакрытиеСмены        |A          |DH138      |1         
 #-----Fields-------
@@ -688,7 +707,7 @@ F=SP341     |(P)ОтклДвижения     |N   |2     |0
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
 #
 #===============================================================================
-#==TABLE no 36     : Документ (Мн.ч.) ЗакрытиеСмены
+#==TABLE no 37     : Документ (Мн.ч.) ЗакрытиеСмены
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DT138   |Документ (Мн.ч.) ЗакрытиеСмены|A          |DT138      |1         
 #-----Fields-------
@@ -704,7 +723,7 @@ F=SP136     |(P)Сумма            |N   |16    |2
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO                                                |IDLINE     
 #
 #===============================================================================
-#==TABLE no 37     : Документ РасчетЗП
+#==TABLE no 38     : Документ РасчетЗП
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DH144   |Документ РасчетЗП             |A          |DH144      |1         
 #-----Fields-------
@@ -719,7 +738,7 @@ F=SP341     |(P)ОтклДвижения     |N   |2     |0
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
 #
 #===============================================================================
-#==TABLE no 38     : Документ (Мн.ч.) РасчетЗП
+#==TABLE no 39     : Документ (Мн.ч.) РасчетЗП
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DT144   |Документ (Мн.ч.) РасчетЗП     |A          |DT144      |1         
 #-----Fields-------
@@ -734,7 +753,7 @@ F=SP142     |(P)Результат        |N   |16    |2
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO                                                |IDLINE     
 #
 #===============================================================================
-#==TABLE no 39     : Документ ПередачаМК
+#==TABLE no 40     : Документ ПередачаМК
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DH151   |Документ ПередачаМК           |A          |DH151      |1         
 #-----Fields-------
@@ -752,7 +771,7 @@ F=SP341     |(P)ОтклДвижения     |N   |2     |0
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
 #
 #===============================================================================
-#==TABLE no 40     : Документ (Мн.ч.) ПередачаМК
+#==TABLE no 41     : Документ (Мн.ч.) ПередачаМК
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DT151   |Документ (Мн.ч.) ПередачаМК   |A          |DT151      |1         
 #-----Fields-------
@@ -765,7 +784,7 @@ F=SP149     |(P)МК               |C   |9     |0
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO                                                |IDLINE     
 #
 #===============================================================================
-#==TABLE no 41     : Документ ПеремещениеТоваров
+#==TABLE no 42     : Документ ПеремещениеТоваров
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DH159   |Документ ПеремещениеТоваров   |A          |DH159      |1         
 #-----Fields-------
@@ -783,7 +802,7 @@ F=SP341     |(P)ОтклДвижения     |N   |2     |0
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
 #
 #===============================================================================
-#==TABLE no 42     : Документ (Мн.ч.) ПеремещениеТоваров
+#==TABLE no 43     : Документ (Мн.ч.) ПеремещениеТоваров
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DT159   |Документ (Мн.ч.) ПеремещениеТо|A          |DT159      |1         
 #-----Fields-------
@@ -797,7 +816,7 @@ F=SP157     |(P)Количество       |N   |11    |3
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO                                                |IDLINE     
 #
 #===============================================================================
-#==TABLE no 43     : Документ ПередачаДС
+#==TABLE no 44     : Документ ПередачаДС
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DH165   |Документ ПередачаДС           |A          |DH165      |1         
 #-----Fields-------
@@ -814,7 +833,7 @@ F=SP341     |(P)ОтклДвижения     |N   |2     |0
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
 #
 #===============================================================================
-#==TABLE no 44     : Документ (Мн.ч.) ПередачаДС
+#==TABLE no 45     : Документ (Мн.ч.) ПередачаДС
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DT165   |Документ (Мн.ч.) ПередачаДС   |A          |DT165      |1         
 #-----Fields-------
@@ -828,7 +847,7 @@ F=SP163     |(P)Сумма            |N   |16    |2
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO                                                |IDLINE     
 #
 #===============================================================================
-#==TABLE no 45     : Документ ВводРасчетов
+#==TABLE no 46     : Документ ВводРасчетов
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DH175   |Документ ВводРасчетов         |A          |DH175      |1         
 #-----Fields-------
@@ -842,7 +861,7 @@ F=SP341     |(P)ОтклДвижения     |N   |2     |0
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
 #
 #===============================================================================
-#==TABLE no 46     : Документ (Мн.ч.) ВводРасчетов
+#==TABLE no 47     : Документ (Мн.ч.) ВводРасчетов
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DT175   |Документ (Мн.ч.) ВводРасчетов |A          |DT175      |1         
 #-----Fields-------
@@ -862,7 +881,7 @@ F=SP173     |(P)Параметр3        |N   |17    |3
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO                                                |IDLINE     
 #
 #===============================================================================
-#==TABLE no 47     : Документ Переоценка
+#==TABLE no 48     : Документ Переоценка
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DH181   |Документ Переоценка           |A          |DH181      |1         
 #-----Fields-------
@@ -878,7 +897,7 @@ F=SP341     |(P)ОтклДвижения     |N   |2     |0
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
 #
 #===============================================================================
-#==TABLE no 48     : Документ (Мн.ч.) Переоценка
+#==TABLE no 49     : Документ (Мн.ч.) Переоценка
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DT181   |Документ (Мн.ч.) Переоценка   |A          |DT181      |1         
 #-----Fields-------
@@ -892,7 +911,7 @@ F=SP179     |(P)НоваяЦена        |N   |11    |2
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO                                                |IDLINE     
 #
 #===============================================================================
-#==TABLE no 49     : Документ КорректировкаТоварныхОстатков
+#==TABLE no 50     : Документ КорректировкаТоварныхОстатков
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DH193   |Документ КорректировкаТоварных|A          |DH193      |1         
 #-----Fields-------
@@ -913,7 +932,7 @@ F=SP341     |(P)ОтклДвижения     |N   |2     |0
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
 #
 #===============================================================================
-#==TABLE no 50     : Документ (Мн.ч.) КорректировкаТоварныхОстатков
+#==TABLE no 51     : Документ (Мн.ч.) КорректировкаТоварныхОстатков
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DT193   |Документ (Мн.ч.) Корректировка|A          |DT193      |1         
 #-----Fields-------
@@ -930,7 +949,7 @@ F=SP191     |(P)ПричинаКорректиро|C   |9     |0
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO                                                |IDLINE     
 #
 #===============================================================================
-#==TABLE no 51     : Документ Списание
+#==TABLE no 52     : Документ Списание
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DH204   |Документ Списание             |A          |DH204      |1         
 #-----Fields-------
@@ -951,7 +970,7 @@ F=SP341     |(P)ОтклДвижения     |N   |2     |0
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
 #
 #===============================================================================
-#==TABLE no 52     : Документ (Мн.ч.) Списание
+#==TABLE no 53     : Документ (Мн.ч.) Списание
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DT204   |Документ (Мн.ч.) Списание     |A          |DT204      |1         
 #-----Fields-------
@@ -967,7 +986,7 @@ F=SP202     |(P)Сумма            |N   |11    |2
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO                                                |IDLINE     
 #
 #===============================================================================
-#==TABLE no 53     : Документ КорректировкаЗаписейРегистров
+#==TABLE no 54     : Документ КорректировкаЗаписейРегистров
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=DH209   |Документ КорректировкаЗаписейР|A          |DH209      |1         
 #-----Fields-------
@@ -983,7 +1002,7 @@ F=SP341     |(P)ОтклДвижения     |N   |2     |0
 I=ID       |of IDDOC      |0     |IDDOC                                                       |ID         
 #
 #===============================================================================
-#==TABLE no 54     : Регистр Закупки
+#==TABLE no 55     : Регистр Закупки
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RG298   |Регистр Закупки               |A          |RG298      |1         
 #-----Fields-------
@@ -999,7 +1018,7 @@ F=SP297     |(P)Сумма            |N   |16    |2
 I=PROP     |PERIOD+PROP   |0     |PERIOD,SP293,SP294,SP295                                    |PROP       
 #
 #===============================================================================
-#==TABLE no 55     : Регистр (Дв.) Закупки
+#==TABLE no 56     : Регистр (Дв.) Закупки
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RA298   |Регистр (Дв.) Закупки         |A          |RA298      |1         
 #-----Fields-------
@@ -1018,7 +1037,7 @@ F=SP297     |(P)Сумма            |N   |16    |2
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO,ACTNO                                          |IDLINE     
 #
 #===============================================================================
-#==TABLE no 56     : Регистр Продажи
+#==TABLE no 57     : Регистр Продажи
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RG307   |Регистр Продажи               |A          |RG307      |1         
 #-----Fields-------
@@ -1036,7 +1055,7 @@ F=SP305     |(P)Сумма            |N   |16    |2
 I=PROP     |PERIOD+PROP   |0     |PERIOD,SP299,SP300,SP301,SP302                              |PROP       
 #
 #===============================================================================
-#==TABLE no 57     : Регистр (Дв.) Продажи
+#==TABLE no 58     : Регистр (Дв.) Продажи
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RA307   |Регистр (Дв.) Продажи         |A          |RA307      |1         
 #-----Fields-------
@@ -1058,7 +1077,7 @@ F=SP306     |(P)Операция         |C   |9     |0
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO,ACTNO                                          |IDLINE     
 #
 #===============================================================================
-#==TABLE no 58     : Регистр Касса
+#==TABLE no 59     : Регистр Касса
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RG311   |Регистр Касса                 |A          |RG311      |1         
 #-----Fields-------
@@ -1071,7 +1090,7 @@ F=SP309     |(P)Сумма            |N   |16    |2
 I=PROP     |PERIOD+PROP   |0     |PERIOD,SP308                                                |PROP       
 #
 #===============================================================================
-#==TABLE no 59     : Регистр (Дв.) Касса
+#==TABLE no 60     : Регистр (Дв.) Касса
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RA311   |Регистр (Дв.) Касса           |A          |RA311      |1         
 #-----Fields-------
@@ -1088,7 +1107,7 @@ F=SP310     |(P)Операция         |C   |9     |0
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO,ACTNO                                          |IDLINE     
 #
 #===============================================================================
-#==TABLE no 60     : Регистр Подотчет
+#==TABLE no 61     : Регистр Подотчет
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RG315   |Регистр Подотчет              |A          |RG315      |1         
 #-----Fields-------
@@ -1101,7 +1120,7 @@ F=SP313     |(P)Сумма            |N   |16    |2
 I=PROP     |PERIOD+PROP   |0     |PERIOD,SP312                                                |PROP       
 #
 #===============================================================================
-#==TABLE no 61     : Регистр (Дв.) Подотчет
+#==TABLE no 62     : Регистр (Дв.) Подотчет
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RA315   |Регистр (Дв.) Подотчет        |A          |RA315      |1         
 #-----Fields-------
@@ -1118,7 +1137,7 @@ F=SP314     |(P)Операция         |C   |9     |0
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO,ACTNO                                          |IDLINE     
 #
 #===============================================================================
-#==TABLE no 62     : Регистр МорозильныеКамеры
+#==TABLE no 63     : Регистр МорозильныеКамеры
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RG320   |Регистр МорозильныеКамеры     |A          |RG320      |1         
 #-----Fields-------
@@ -1132,7 +1151,7 @@ F=SP318     |(P)Наличие          |N   |11    |0
 I=PROP     |PERIOD+PROP   |0     |PERIOD,SP316,SP317                                          |PROP       
 #
 #===============================================================================
-#==TABLE no 63     : Регистр (Дв.) МорозильныеКамеры
+#==TABLE no 64     : Регистр (Дв.) МорозильныеКамеры
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RA320   |Регистр (Дв.) МорозильныеКамер|A          |RA320      |1         
 #-----Fields-------
@@ -1150,7 +1169,7 @@ F=SP319     |(P)Операция         |C   |9     |0
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO,ACTNO                                          |IDLINE     
 #
 #===============================================================================
-#==TABLE no 64     : Регистр ТоварыНаСкладах
+#==TABLE no 65     : Регистр ТоварыНаСкладах
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RG325   |Регистр ТоварыНаСкладах       |A          |RG325      |1         
 #-----Fields-------
@@ -1164,7 +1183,7 @@ F=SP323     |(P)Количество       |N   |11    |3
 I=PROP     |PERIOD+PROP   |0     |PERIOD,SP321,SP322                                          |PROP       
 #
 #===============================================================================
-#==TABLE no 65     : Регистр (Дв.) ТоварыНаСкладах
+#==TABLE no 66     : Регистр (Дв.) ТоварыНаСкладах
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RA325   |Регистр (Дв.) ТоварыНаСкладах |A          |RA325      |1         
 #-----Fields-------
@@ -1182,7 +1201,7 @@ F=SP324     |(P)Операция         |C   |9     |0
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO,ACTNO                                          |IDLINE     
 #
 #===============================================================================
-#==TABLE no 66     : Регистр ПартииТоваров
+#==TABLE no 67     : Регистр ПартииТоваров
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RG331   |Регистр ПартииТоваров         |A          |RG331      |1         
 #-----Fields-------
@@ -1197,7 +1216,7 @@ F=SP329     |(P)Сумма            |N   |16    |2
 I=PROP     |PERIOD+PROP   |0     |PERIOD,SP326,SP327                                          |PROP       
 #
 #===============================================================================
-#==TABLE no 67     : Регистр (Дв.) ПартииТоваров
+#==TABLE no 68     : Регистр (Дв.) ПартииТоваров
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RA331   |Регистр (Дв.) ПартииТоваров   |A          |RA331      |1         
 #-----Fields-------
@@ -1216,7 +1235,7 @@ F=SP330     |(P)Операция         |C   |9     |0
 I=IDLINE   |of IDDOC+LineN|0     |IDDOC,LINENO,ACTNO                                          |IDLINE     
 #
 #===============================================================================
-#==TABLE no 68     : Регистр ЗП
+#==TABLE no 69     : Регистр ЗП
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RG335   |Регистр ЗП                    |A          |RG335      |1         
 #-----Fields-------
@@ -1230,7 +1249,7 @@ F=SP334     |(P)Результат        |N   |16    |2
 I=PROP     |PERIOD+PROP   |0     |PERIOD,SP332,SP333                                          |PROP       
 #
 #===============================================================================
-#==TABLE no 69     : Регистр (Дв.) ЗП
+#==TABLE no 70     : Регистр (Дв.) ЗП
 # Name    |Descr                         |Type[A/S/U]|DBTableName|ReUsable  
 T=RA335   |Регистр (Дв.) ЗП              |A          |RA335      |1         
 #-----Fields-------
