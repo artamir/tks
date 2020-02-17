@@ -1,0 +1,119 @@
+//*******************************************
+Функция Тест() Экспорт
+	
+	Возврат "Глобальный модуль ""Хеш"" успешно подключен";
+	
+КонецФункции	
+//*******************************************
+//База32=-1 crc32; 0 crc16
+//ТипДанных=-1 файл (парам "Данные" - имя файла); 0 - строка
+//
+Функция Код32_16(стрДанные, База=-1, ТипДанных=0) Экспорт
+	//Текст = СоздатьОбъект("Текст");
+    //Текст.ДобавитьСтроку("<?xml version='1.0' encoding='windows-1251'?>
+    //|<component>
+    //|<registration
+    //|    description='ComCrc32_16'
+    //|    progid='ComCrc32_16.WSC'
+    //|    version='1.00'
+    //|    classid='{424ac2bc-5732-4dea-be17-0211af99cd7a}'
+    //| />
+    //|<public>
+    //|    <method name='получитьCRC' />
+    //|    <method name='getcrc'    />
+    //|</public>
+    //|<script language='vbscript'>
+    //|<![CDATA[
+    //|function getASC(c)
+    //|    getASC=AscB(c)
+    //|end function
+    //|]]>
+    //|</script>
+    //|<script language='javascript'>
+    //|<![CDATA[
+    //|var crc_tab;
+    //|function getcrcinsite(n,crc,basa32){
+    //|    if (basa32){
+    //|        crc = crc_tab[(crc ^ n) & 0xFF] ^ ((crc>>8)&0xFFFFFF);
+    //|        }
+    //|    else {
+    //|        crc = crc_tab[((crc>>8)^n)&0xFF]^((crc<<8)&0xFFFF);
+    //|        }
+    //|    return crc;
+    //|}
+    //|function create_table(basa32) {
+    //|    var i;
+    //|    var crctable = new Array();
+    //|    if (basa32) {
+    //|        poly=0xedb88320;
+    //|        for(i=0;i<256;i++) {
+    //|            j=i;
+    //|            for(k=0;k<8;k++) {
+    //|                l = ((j & 0xfffffffe)/2) & 0x7fffffff;
+    //|                j = (j & 1) ? l ^ poly : l;
+    //|                }
+    //|            crctable[i] = j & 0xffffffff;
+    //|            }
+    //|        }
+    //|    else {
+    //|        poly=0x1021;
+    //|        for (i=0;i<256;i++) {
+    //|            j=i << 8;
+    //|            for(k=0;k<8;k++) {
+    //|                j = (j & 0x8000) ? (j << 1) ^ poly  : j << 1;
+    //|                }
+    //|            crctable[i] = j & 0xFFFF;
+    //|            }
+    //|        }
+    //|        return crctable;
+    //|    }
+    //|function получитьCRC(data,basa32,typedata){
+    //|    return getcrc(data,basa32,typedata);
+    //|    }
+    //|function getcrc(data,basa32,typedata){
+    //|    crc_tab=create_table(basa32);
+    //|    if (basa32) {
+    //|        crc = 0xffffffff;
+    //|        }
+    //|    else {
+    //|        crc = 0;
+    //|        }
+    //|    if (typedata) {
+    //|        var fso = new ActiveXObject('Scripting.FileSystemObject');
+    //|        if (fso.fileexists(data)) {
+    //|            var stream=new ActiveXObject('ADODB.Stream');
+    //|            stream.Type=1;
+    //|            stream.Open();
+    //|            stream.LoadFromFile(data);
+    //|            while (!stream.EOS){
+    //|                crc=getcrcinsite(getASC(stream.Read(1)),crc,basa32);
+    //|                }
+    //|            stream.Close();
+    //|            }
+    //|        }
+    //|    else {
+    //|        for (i=0;i<data.length;i++) {
+    //|            crc=getcrcinsite(data.charCodeAt(i),crc,basa32);
+    //|            }
+    //|        }
+    //|    if (basa32) {
+    //|        crc=(crc ^ 0xffffffff < 0) ? (0x100000000-(crc ^ 0xffffffff)) : crc ^ 0xffffffff;
+    //|        }
+    //|    else {
+    //|        crc=crc & 0xffff;
+    //|        }
+    //|    return crc.toString(16).toUpperCase();
+    //|    }
+    //|]]>
+    //|</script>
+    //|</component>");
+    //Текст.Записать(КаталогИБ() + "crc32_16.wsc");
+    Скрипт = СоздатьОбъект("MSScriptControl.ScriptControl");
+    Скрипт.language = "javascript";
+    ОбъектCRC = Скрипт.Eval(Шаблон("GetObject('script:[СтрЗаменить(КаталогИБ(),""\"",""\\"")]crc32_16.wsc')"));
+	Рез = Строка(ОбъектCRC.получитьCRC(стрДанные, База, ТипДанных));
+	ОбъектCRC = "";
+	Скрипт = "";
+	Возврат Рез;
+
+КонецФункции

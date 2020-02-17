@@ -1,0 +1,19 @@
+PARAMETERS MSec
+
+LOCAL R
+R = MSec / 10000
+
+LOCAL H
+H = INT(R / 3600)
+
+R = R - H * 3600
+
+LOCAL M
+M = INT(R / 60)
+
+R = R - M * 60
+
+LOCAL S
+S = R
+
+RETURN CAST(RIGHT("0"+LTRIM(RTRIM(STR(H))), 2) + ":" + RIGHT("0"+LTRIM(RTRIM(STR(M))), 2) + ":" + RIGHT("0"+LTRIM(RTRIM(STR(S))), 2) AS CHAR(8))
