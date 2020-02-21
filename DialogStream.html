@@ -1,0 +1,471 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Dialog Stream</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        	<script>
+				function draw() 
+				   {
+					var obj_canvas = document.getElementById("c");
+					var ctx = obj_canvas.getContext("2d");
+					ctx.strokeRect(5, 5, 1395, 695);
+					ctx.fillStyle = "#C2C2BD";
+					ctx.fillRect(40, 40, 451, 282);
+					ctx.strokeStyle = "#000";
+					ctx.strokeRect(117, 297, 59, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("Закрыть", 117, 306);
+					ctx.strokeStyle = "#000";
+					ctx.strokeRect(51, 297, 59, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("ОК", 51, 306);
+					ctx.fillStyle = "white";
+					ctx.fillRect(345, 264, 68, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("0", 345, 274);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("СрокГодности:", 268, 274);
+					ctx.fillStyle = "white";
+					ctx.fillRect(128, 264, 112, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("", 128, 274);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("схСерияПоУмолчани", 51, 274);
+					ctx.fillStyle = "white";
+					ctx.fillRect(345, 239, 134, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("", 345, 249);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("схСубПродукт:", 268, 249);
+					ctx.fillStyle = "white";
+					ctx.fillRect(128, 239, 134, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("", 128, 249);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("схПродукт:", 51, 249);
+					ctx.fillStyle = "white";
+					ctx.fillRect(345, 213, 68, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("0", 345, 223);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("схТип:", 268, 223);
+					ctx.fillStyle = "white";
+					ctx.fillRect(128, 213, 134, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("                              ", 128, 223);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("схГУИД:", 51, 223);
+					ctx.fillStyle = "white";
+					ctx.fillRect(345, 188, 134, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("                              ", 345, 198);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("схИД:", 268, 198);
+					ctx.fillStyle = "white";
+					ctx.fillRect(128, 188, 68, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("Весовой", 128, 198);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("ТипФасовки:", 51, 198);
+					ctx.fillStyle = "white";
+					ctx.fillRect(345, 163, 68, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("0", 345, 173);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("АссортиментПФ:", 268, 173);
+					ctx.fillStyle = "white";
+					ctx.fillRect(128, 163, 68, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("0", 128, 173);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("АссортиментМороже", 51, 173);
+					ctx.fillStyle = "white";
+					ctx.fillRect(345, 137, 68, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("0", 345, 147);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("ПроцентСписания:", 268, 147);
+					ctx.fillStyle = "white";
+					ctx.fillRect(128, 137, 134, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("                              ", 128, 147);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("КодСоответствия:", 51, 147);
+					ctx.fillStyle = "white";
+					ctx.fillRect(345, 112, 112, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("", 345, 122);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("Производитель:", 268, 122);
+					ctx.fillStyle = "white";
+					ctx.fillRect(128, 112, 68, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("0", 128, 122);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("КВК:", 51, 122);
+					ctx.fillStyle = "white";
+					ctx.fillRect(345, 87, 112, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("", 345, 97);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("Вид:", 268, 97);
+					ctx.fillStyle = "white";
+					ctx.fillRect(128, 87, 68, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("0", 128, 97);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("Вес:", 51, 97);
+					ctx.fillStyle = "white";
+					ctx.fillRect(345, 62, 134, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("Товар 1", 345, 71);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("Наименование:", 268, 71);
+					ctx.fillStyle = "white";
+					ctx.fillRect(128, 62, 68, 15);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("Р-000001", 128, 71);
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("Код:", 51, 71);
+					ctx.beginPath();
+					ctx.moveTo(128, 87);  
+					ctx.lineTo(20, 20);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("1.", 20, 20);
+					ctx.beginPath();
+					ctx.moveTo(128, 62);  
+					ctx.lineTo(102, 20);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("2.", 102, 20);
+					ctx.beginPath();
+					ctx.moveTo(345, 112);  
+					ctx.lineTo(184, 20);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("3.", 184, 20);
+					ctx.beginPath();
+					ctx.moveTo(345, 87);  
+					ctx.lineTo(266, 20);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("4.", 266, 20);
+					ctx.beginPath();
+					ctx.moveTo(345, 62);  
+					ctx.lineTo(348, 20);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("5.", 348, 20);
+					ctx.beginPath();
+					ctx.moveTo(345, 137);  
+					ctx.lineTo(511, 20);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("6.", 511, 20);
+					ctx.beginPath();
+					ctx.moveTo(345, 163);  
+					ctx.lineTo(511, 90);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("7.", 511, 90);
+					ctx.beginPath();
+					ctx.moveTo(345, 188);  
+					ctx.lineTo(511, 161);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("8.", 511, 161);
+					ctx.beginPath();
+					ctx.moveTo(345, 213);  
+					ctx.lineTo(511, 232);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("9.", 511, 232);
+					ctx.beginPath();
+					ctx.moveTo(345, 239);  
+					ctx.lineTo(511, 342);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("10.", 511, 351);
+					ctx.beginPath();
+					ctx.moveTo(345, 264);  
+					ctx.lineTo(375, 342);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("11.", 375, 351);
+					ctx.beginPath();
+					ctx.moveTo(128, 264);  
+					ctx.lineTo(238, 342);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("12.", 238, 351);
+					ctx.beginPath();
+					ctx.moveTo(128, 239);  
+					ctx.lineTo(20, 344);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("13.", 20, 344);
+					ctx.beginPath();
+					ctx.moveTo(128, 213);  
+					ctx.lineTo(20, 297);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("14.", 20, 297);
+					ctx.beginPath();
+					ctx.moveTo(128, 188);  
+					ctx.lineTo(20, 250);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("15.", 20, 250);
+					ctx.beginPath();
+					ctx.moveTo(128, 163);  
+					ctx.lineTo(20, 203);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("16.", 20, 203);
+					ctx.beginPath();
+					ctx.moveTo(128, 137);  
+					ctx.lineTo(20, 156);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("17.", 20, 156);
+					ctx.beginPath();
+					ctx.moveTo(128, 112);  
+					ctx.lineTo(20, 109);  
+					ctx.lineWidth = "0.5";
+					ctx.strokeStyle = "red";
+					ctx.stroke();
+					ctx.fillStyle = "#000";
+					ctx.font = "8px sans-serif";
+					ctx.fillText("18.", 20, 109);
+				   }
+			</script>
+   </head> 
+   <body onload="draw();">
+       <canvas id="c" width="550" height="377"></canvas>
+       <table border="1">
+           <tr>
+              <th>Имя</th>
+              <th>Синоним</th>
+              <th>Описание</th>
+              <th>Тип</th>
+              <th>НомТабл</th>
+           </tr>
+           <tr>
+              <td>Вес</td>
+              <td></td>
+              <td></td>
+              <td>Число(12,3)</td>
+              <td>1</td>
+           </tr>
+           <tr>
+              <td>Код</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>2</td>
+           </tr>
+           <tr>
+              <td>Производитель</td>
+              <td></td>
+              <td></td>
+              <td>Справочник.Производители</td>
+              <td>3</td>
+           </tr>
+           <tr>
+              <td>Вид</td>
+              <td></td>
+              <td></td>
+              <td>Справочник.ВидыТоваров</td>
+              <td>4</td>
+           </tr>
+           <tr>
+              <td>Наименование</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>5</td>
+           </tr>
+           <tr>
+              <td>ПроцентСписания</td>
+              <td></td>
+              <td></td>
+              <td>Число(5,2)</td>
+              <td>6</td>
+           </tr>
+           <tr>
+              <td>АссортиментПФ</td>
+              <td></td>
+              <td>Товар входит в ассортимент киоска ПФ</td>
+              <td>Число(1,0)</td>
+              <td>7</td>
+           </tr>
+           <tr>
+              <td>схИД</td>
+              <td></td>
+              <td></td>
+              <td>Строка(36,0)</td>
+              <td>8</td>
+           </tr>
+           <tr>
+              <td>схТип</td>
+              <td></td>
+              <td></td>
+              <td>Число(2,0)</td>
+              <td>9</td>
+           </tr>
+           <tr>
+              <td>схСубПродукт</td>
+              <td></td>
+              <td></td>
+              <td>Справочник.схСубПродукты</td>
+              <td>10</td>
+           </tr>
+           <tr>
+              <td>СрокГодности</td>
+              <td></td>
+              <td></td>
+              <td>Число(2,0)</td>
+              <td>11</td>
+           </tr>
+           <tr>
+              <td>схСерияПоУмолчанию</td>
+              <td></td>
+              <td></td>
+              <td>Справочник.схСерииНоменклатуры</td>
+              <td>12</td>
+           </tr>
+           <tr>
+              <td>схПродукт</td>
+              <td></td>
+              <td></td>
+              <td>Справочник.схПродукты</td>
+              <td>13</td>
+           </tr>
+           <tr>
+              <td>схГУИД</td>
+              <td></td>
+              <td></td>
+              <td>Строка(36,0)</td>
+              <td>14</td>
+           </tr>
+           <tr>
+              <td>ТипФасовки</td>
+              <td></td>
+              <td></td>
+              <td>Перечисление.ТипыФасовки</td>
+              <td>15</td>
+           </tr>
+           <tr>
+              <td>АссортиментМороженое</td>
+              <td></td>
+              <td>Товар входит в ассортимент киоска Мороженое</td>
+              <td>Число(1,0)</td>
+              <td>16</td>
+           </tr>
+           <tr>
+              <td>КодСоответствия</td>
+              <td></td>
+              <td>для сортировки товаров (аналогичноТорговли)</td>
+              <td>Строка(100,0)</td>
+              <td>17</td>
+           </tr>
+           <tr>
+              <td>КВК</td>
+              <td></td>
+              <td></td>
+              <td>Число(3,0)</td>
+              <td>18</td>
+           </tr>
+      </table>
+   </body>
+</html>		
