@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://api.vetrf.ru/schema/cdm/argus/common/ws-definitions" elementFormDefault="qualified" version="1.4" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bs="http://api.vetrf.ru/schema/cdm/base" xmlns:com="http://api.vetrf.ru/schema/cdm/argus/common">
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/base" schemaLocation="base_v1.4.xsd"/>
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/argus/common" schemaLocation="argus_common_v1.4.xsd"/>
+  <xs:element name="getPurposeByGuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение назначения груза по глобальному
+            идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:guid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Глобальный идентификатор, по которому
+                     проводится поиск записи.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPurposeByGuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения записи назначения груза
+            по глобальному идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="com:purpose" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Запись назначения груза.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPurposeByUuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение записи назначения груза по
+            идентфикатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:uuid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Идентификатор, по которому производится поиск
+                     записи.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPurposeByUuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения записи назначения груза
+            по идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="com:purpose" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Запись назначения груза.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPurposeListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка назначений.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPurposeListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка целей.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="com:purposeList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список целей.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPurposeChangesListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка изменившихся записей
+            целей ввоза/вывоза.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="bs:updateDateInterval" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Интервал времени обновления. В список попадают
+                     все записи, дата
+                     обновлений которых попадает в указанный интервал.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getPurposeChangesListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка изменений записей
+            назначений.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="com:purposeList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список записей назначения груза.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUnitByGuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение единицы измерения
+            по глобальному идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:guid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Глобальный идентификатор,
+                     по которому проводится поиск записи.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUnitByGuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения единицы измерения
+            по глобальному идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="com:unit" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Найденная по глобальному идентификатору запись единицы измерения.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUnitByUuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение записи единицы измерения по ее идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:uuid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Идентификатор, по которому производится поиск записи.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUnitByUuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения записи единицы измерения
+            по идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="com:unit" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Найденная по идентификатору запись единицы измерения.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUnitListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос списка единиц измерения.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUnitListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос сипка единиц измерения.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="com:unitList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список едениц измерений.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUnitChangesListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка изменившихся записей единиц измерений.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="bs:updateDateInterval" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Интервал времени обновления. В список попадают
+                     все записи, дата обновлений которых попадает в указанный интервал.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getUnitChangesListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка
+            изменившихся записей единиц измерений.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="com:unitList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список записей единиц измерений.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

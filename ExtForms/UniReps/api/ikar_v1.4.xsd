@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://api.vetrf.ru/schema/cdm/ikar" elementFormDefault="qualified" version="1.4" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://api.vetrf.ru/schema/cdm/ikar" xmlns:bs="http://api.vetrf.ru/schema/cdm/base">
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/base" schemaLocation="base_v1.4.xsd"/>
+  <xs:element name="country" type="tns:Country"/>
+  <xs:element name="region" type="tns:Region"/>
+  <xs:element name="district" type="tns:District"/>
+  <xs:element name="countryList" type="tns:CountryList"/>
+  <xs:element name="regionList" type="tns:RegionList"/>
+  <xs:element name="districtList" type="tns:DistrictList"/>
+  <xs:element name="localityList" type="tns:LocalityList"/>
+  <xs:element name="streetList" type="tns:StreetList"/>
+  <xs:element name="countryGuid" type="bs:UUID"/>
+  <xs:element name="regionGuid" type="bs:UUID"/>
+  <xs:element name="districtGuid" type="bs:UUID"/>
+  <xs:element name="localityGuid" type="bs:UUID"/>
+  <xs:complexType name="Country">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий страну.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericVersioningEntity">
+        <xs:sequence>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Название страны.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="fullName" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Полное название страны, если имеется.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="englishName" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Английское название страны.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="code" type="tns:Code" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Двухбуквенный код страны, соответствующий
+                                стандарту ISO 3166-1.
+                                В качестве кода используются буквы
+                                латинского алфавита.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="code3" type="tns:Code3" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Трехбуквенный код страны, соответсвующий
+                                стандарту ISO 3166-1.
+                                В качестве кода используются буквы
+                                латинского алфавита.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FederalDistrict">
+    <xs:complexContent>
+      <xs:extension base="bs:GenericVersioningEntity">
+        <xs:sequence>
+          <xs:element name="fullName" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Полное название (содержить "федеральный
+                                округ").</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="shortName" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Короткое название (без "федеральный округ").</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="abbreviation" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Аббревиатура.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AddressObjectView">
+    <xs:annotation>
+      <xs:documentation>Обертка для адресных объектов различного уровня
+                (начиная с регионов страны, заканчивая улицами населенных пунктов)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericVersioningEntity">
+        <xs:sequence>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Название объекта (не содержит название типа
+                                объекта).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="englishName" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Английское название объекта.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="view" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Представление объекта (обычно это название +
+                                название типа объекта).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="regionCode" type="xs:string" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Код региона. Например, 33 - Владимирский регион</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="type" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Название типа адресного объекта (например,
+                                область, район или город).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="countryGuid" type="bs:UUID" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Глобальный идентификатор страны, к которой
+                                относится данный объект.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="hasStreets" type="xs:boolean" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Флаг, указывающий наличие улиц.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Region">
+    <xs:annotation>
+      <xs:documentation>Тип региона страны (обычно первый уровень в
+                адресной структуре).</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="tns:AddressObjectView"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="District">
+    <xs:annotation>
+      <xs:documentation>Тип района региона (обычно второй уровень в
+                адресной структуре).</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="tns:AddressObjectView">
+        <xs:sequence>
+          <xs:element name="regionGuid" type="bs:UUID" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Глобальный идентификатор рениона, к которому
+                                относится данный район.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Locality">
+    <xs:annotation>
+      <xs:documentation>Тип населенного пункта (город, поселок, деревня и прочие).</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="tns:AddressObjectView">
+        <xs:sequence>
+          <xs:element name="regionGuid" type="bs:UUID" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Глобальный идентификатор рениона, к которому
+                                относится данный населенный пункт.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="districtGuid" type="bs:UUID" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Глобальный идентификатор района, к которому
+                                относится данный населенный пункт.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="cityGuid" type="bs:UUID" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Глобальный идентификатор города, к которому
+                                относится данный населенный пункт.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Street">
+    <xs:annotation>
+      <xs:documentation>Тип улицы.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="tns:AddressObjectView">
+        <xs:sequence>
+          <xs:element name="localityGuid" type="bs:UUID" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Глобальный идентификатор насленного пункта, к которому
+                                относится данная улица.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Address">
+    <xs:sequence>
+      <xs:element name="country" type="tns:Country" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="federalDistrict" type="tns:FederalDistrict" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="region" type="tns:Region" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="district" type="tns:District" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="locality" type="tns:Locality" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="subLocality" type="tns:Locality" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="street" type="tns:Street" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="house" type="bs:String255" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="building" type="bs:String255" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="room" type="bs:String255" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="postIndex" type="bs:String255" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="postBox" type="bs:String255" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="addressView" type="bs:String255" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="enAddressView" type="bs:String255" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CountryList">
+    <xs:annotation>
+      <xs:documentation>Тип-обертка для списка стран.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="country" type="tns:Country" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RegionList">
+    <xs:annotation>
+      <xs:documentation>Тип-обертка для списка регионов.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="region" type="tns:Region" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DistrictList">
+    <xs:annotation>
+      <xs:documentation>Тип-обертка для списка районов.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="district" type="tns:District" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LocalityList">
+    <xs:annotation>
+      <xs:documentation>Тип-обертка для списка населенных пунктов.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="locality" type="tns:Locality" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StreetList">
+    <xs:annotation>
+      <xs:documentation>Тип-обертка для списка улиц.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="street" type="tns:Street" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Code">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий двухсимвольный код страны.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="string">
+      <xs:maxLength value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Code3">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий трехсимвольный код страны.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="string">
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

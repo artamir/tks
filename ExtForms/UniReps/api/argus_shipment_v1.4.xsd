@@ -1,0 +1,249 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<xs:schema targetNamespace="http://api.vetrf.ru/schema/cdm/argus/shipment"
+           xmlns="http://www.w3.org/2001/XMLSchema"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://api.vetrf.ru/schema/cdm/argus/shipment"
+           xmlns:bs="http://api.vetrf.ru/schema/cdm/base"
+           xmlns:ent="http://api.vetrf.ru/schema/cdm/cerberus/enterprise"
+           elementFormDefault="qualified" version="1.4">
+
+   <xs:import namespace="http://api.vetrf.ru/schema/cdm/base" schemaLocation="base_v1.4.xsd"/>
+   <xs:import namespace="http://api.vetrf.ru/schema/cdm/cerberus/enterprise" schemaLocation="enterprise_v1.4.xsd"/>
+   <xs:import namespace="http://api.vetrf.ru/schema/cdm/argus/common" schemaLocation="argus_common_v1.4.xsd"/>
+
+   <xs:complexType name="Waybill">
+      <xs:annotation>
+         <xs:documentation>Товарно-транспортная накладная.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="bs:GenericEntity">
+            <xs:sequence>
+               <xs:element name="issueSeries" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Серия документа.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="issueNumber" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Номер документа.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="issueDate" type="xs:date" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Дата документа.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="type" type="tns:WaybillType" minOccurs="1" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Тип товарно-транспортной накладной.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="consignor" type="ent:BusinessMember" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения об отправителе (владельце).</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="consignee" type="ent:BusinessMember" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о получателе груза.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="broker" type="ent:BusinessEntity" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о фирме-посреднике.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="transportInfo" type="tns:TransportInfo" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о транспорте.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="transportStorageType" type="tns:TransportationStorageType" minOccurs="0"
+                        maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Способ хранения при перевозке.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="cargoReloadingPointList" type="tns:ShipmentRoute" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о маршруте следования (пунктах перегрузки).</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:simpleType name="WaybillType">
+      <xs:annotation>
+         <xs:documentation>Тип товарно-транспортной накладной.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:integer">
+         <xs:enumeration value="1">
+            <xs:annotation>
+               <xs:documentation>Товарно-транспортная накладная</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="2">
+            <xs:annotation>
+               <xs:documentation>Конасамент</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="3">
+            <xs:annotation>
+               <xs:documentation>CMR</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="4">
+            <xs:annotation>
+               <xs:documentation>Авианакладная</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="TransportationStorageType">
+      <xs:annotation>
+         <xs:documentation>Способ хранения при перевозке.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="bs:String255">
+         <xs:enumeration value="FROZEN">
+            <xs:annotation>
+               <xs:documentation>Замороженный тип перевозки</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="CHILLED">
+            <xs:annotation>
+               <xs:documentation>Охлажденный тип перевозки</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="COOLED">
+            <xs:annotation>
+               <xs:documentation>Охлаждаемый тип перевозки</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="VENTILATED">
+            <xs:annotation>
+               <xs:documentation>Вентилируемый тип перевозки</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="TransportInfo">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий информацию о транспорте.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="transportType" type="tns:TransportType" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Тип транспортного средства.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="transportNumber" type="tns:TransportNumber" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Номера т/с.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:simpleType name="TransportType">
+      <xs:annotation>
+         <xs:documentation>Тип транспорта.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:integer">
+         <xs:enumeration value="1">
+            <xs:annotation>
+               <xs:documentation>Автомобильный</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="2">
+            <xs:annotation>
+               <xs:documentation>Железнодорожный</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="3">
+            <xs:annotation>
+               <xs:documentation>Авиатранспортный</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="4">
+            <xs:annotation>
+               <xs:documentation>Морской (контейнер)</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="5">
+            <xs:annotation>
+               <xs:documentation>Морской (трюм)</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="TransportNumber">
+      <xs:annotation>
+         <xs:documentation>Номер транспортного средства.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="containerNumber" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Номер контейнера.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="wagonNumber" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Номер авиарейса.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="vehicleNumber" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Номер автомобиля.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="trailerNumber" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Номер прицепа (полуприцепа).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="shipName" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Название судна.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="flightNumber" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Номер авиарейса.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <complexType name="CargoReloadingPoint">
+      <annotation>
+         <documentation>Сведения о пункте перегрузки груза</documentation>
+      </annotation>
+      <sequence>
+         <element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <annotation>
+               <documentation>Название пункта перегрузки.</documentation>
+            </annotation>
+         </element>
+         <element name="nextTransport" type="tns:TransportInfo" minOccurs="0" maxOccurs="1">
+            <annotation>
+               <documentation>Сведения о дальнейшем транспорте.</documentation>
+            </annotation>
+         </element>
+      </sequence>
+   </complexType>
+
+   <complexType name="ShipmentRoute">
+      <annotation>
+         <documentation>Тип, описывающий список пунктов перегрузки груза.</documentation>
+      </annotation>
+      <sequence>
+         <element name="cargoReloadingPoint" type="tns:CargoReloadingPoint" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+   </complexType>
+
+</xs:schema>

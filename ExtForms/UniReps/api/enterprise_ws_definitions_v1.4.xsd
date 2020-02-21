@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://api.vetrf.ru/schema/cdm/cerberus/enterprise/ws-definitions" elementFormDefault="qualified" version="1.4" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bs="http://api.vetrf.ru/schema/cdm/base" xmlns:ent="http://api.vetrf.ru/schema/cdm/cerberus/enterprise">
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/base" schemaLocation="base_v1.4.xsd"/>
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/cerberus/enterprise" schemaLocation="enterprise_v1.4.xsd"/>
+  <xs:element name="getEnterpriseByGuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение записи предприятия по глобальномуидентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:guid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Глобальный идентификатор, по которому проводится поиск записи.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getEnterpriseByGuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения записи предприятия по глобальному идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ent:enterprise" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Запись ХС.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getEnterpriseByUuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение записи предприятия по идентфикатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:uuid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Идентификатор, по которому производится поиск записи.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getEnterpriseByUuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения записи предприятия по идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ent:enterprise" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Запись ХС.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getForeignEnterpriseListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка зарубежныйх предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="ent:enterpriseGroup" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Параметр запроса предприятий.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="ent:enterprise" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Параметр запроса предприятий.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getForeignEnterpriseListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка зарубежных предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ent:enterpriseList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список предприятий.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getRussianEnterpriseListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка российских предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="ent:enterprise" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Параметр запроса предприятий.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getRussianEnterpriseListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка российских предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ent:enterpriseList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список предприятий.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getForeignEnterpriseChangesListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка изменившихся записей предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="bs:updateDateInterval" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Интервал времени обновления. В список попадают
+                            все записи, дата обновлений которых попадает в указанный интервал.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getForeignEnterpriseChangesListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка изменений записей предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ent:enterpriseList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список записей предприятий.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getRussianEnterpriseChangesListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка изменившихся записей предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="bs:updateDateInterval" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Интервал времени обновления. В список попадают
+                            все записи, дата обновлений которых попадает в указанный интервал.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getRussianEnterpriseChangesListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка изменений записей предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ent:enterpriseList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список записей предприятий.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

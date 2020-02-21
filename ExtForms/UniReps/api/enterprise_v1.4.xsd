@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://api.vetrf.ru/schema/cdm/cerberus/enterprise" elementFormDefault="qualified" version="1.4" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://api.vetrf.ru/schema/cdm/cerberus/enterprise" xmlns:bs="http://api.vetrf.ru/schema/cdm/base" xmlns:ikar="http://api.vetrf.ru/schema/cdm/ikar">
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/base" schemaLocation="base_v1.4.xsd"/>
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/ikar" schemaLocation="ikar_v1.4.xsd"/>
+  <xs:element name="businessEntity" type="tns:BusinessEntity"/>
+  <xs:element name="businessEntityList" type="tns:BusinessEntityList"/>
+  <xs:element name="enterpriseGuid" type="bs:UUID"/>
+  <xs:element name="enterprise" type="tns:Enterprise"/>
+  <xs:element name="enterpriseList" type="tns:EnterpriseList"/>
+  <xs:element name="enterpriseGroup" type="tns:EnterpriseGroup"/>
+  <xs:complexType name="Enterprise">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий предприятия.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericVersioningEntity">
+        <xs:sequence>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Название предприятия.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="englishName" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Название предприятия на английском языке.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="type" type="tns:EnterpriseType" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Тип российского предприятия.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="numberList" type="tns:EnterpriseNumberList" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Список номеров предприятия.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="address" type="ikar:Address" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Адрес предприятия.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="activityList" type="tns:EnterpriseActivityList" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Деятельность, осуществляемая предприятием.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="owner" type="tns:BusinessEntity" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>ХС-владелец.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ActivityLocation">
+    <xs:annotation>
+      <xs:documentation>Место осуществления деятельности</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="enterprise" type="tns:Enterprise" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EnterpriseActivityList">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий список видов деятельности.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="activity" type="tns:EnterpriseActivity" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EnterpriseActivity">
+    <xs:annotation>
+      <xs:documentation>Вид деятельности.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericEntity">
+        <xs:sequence>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Producer">
+    <xs:annotation>
+      <xs:documentation>Производитель продукции</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="enterprise" type="tns:Enterprise" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="role" type="tns:EnterpriseRole" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProducerList">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий список производителей продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="producer" type="tns:Producer" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EnterpriseNumberList">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий список номеров предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="enterpriseNumber" type="bs:String255" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="EnterpriseGroup">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий параметра запроса зарубежных пердприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="0">
+        <xs:annotation>
+          <xs:documentation>ALL - все предприятия.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>LICENSED - аттестованные предприятия.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>NOTLICENSED - неаттестованные предприятия.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="EnterpriseType">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий тип российских предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer"/>
+  </xs:simpleType>
+  <xs:complexType name="EnterpriseList">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий список предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="enterprise" type="tns:Enterprise" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="EnterpriseRole">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий роль пердприятия.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bs:String255">
+      <xs:enumeration value="UNKNOWN">
+        <xs:annotation>
+          <xs:documentation>Роль не определена.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PRODUCER">
+        <xs:annotation>
+          <xs:documentation>Является производителем продукции (в том числе выращивание).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SLAUGHTER_HOUSE">
+        <xs:annotation>
+          <xs:documentation>Бойня (мясокомбинат).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CUTTING_PLANT">
+        <xs:annotation>
+          <xs:documentation>Разделочное предприятие.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="COLD_STORE">
+        <xs:annotation>
+          <xs:documentation>Холодильник.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PACKAGING_PLANT">
+        <xs:annotation>
+          <xs:documentation>Упаковочное предприятие.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="BusinessMember">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий бизнес-сторону.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="businessEntity" type="tns:BusinessEntity" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Хозяйствующий субъект</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="enterprise" type="tns:Enterprise" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Предприятие (площадка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BusinessEntity">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий ХС.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericVersioningEntity">
+        <xs:sequence>
+          <xs:element name="type" type="tns:BusinessEntityType" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Тип ХС</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Наименование хозяйствующего субъекта без ОПФ.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="incorporationForm" type="tns:IncorporationForm" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Организационно-правовая форма.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="fullName" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Полное наименование хозяйствующего субъекта.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="fio" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>ФИО хозяйствующего субъекта.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="passport" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Паспортные данные.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="inn" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Идентификационный номер ХС (ИНН, БИН или ИИН).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="kpp" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>КПП субъекта.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ogrn" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>ОГРН(ИП) субъекта.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="juridicalAddress" type="ikar:Address" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Юридический адрес или адрес регистрации ХС.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="activityLocation" type="tns:ActivityLocation" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Место осуществления деятельности.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IncorporationForm">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий элементы справочника ОПФ</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericEntity">
+        <xs:sequence>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="code" type="bs:String255" minOccurs="0" maxOccurs="1"/>
+          <xs:element name="shortName" type="bs:String255" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="BusinessEntityType">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий тип ХС.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>JURIDICAL - юридическое лицо.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>PHYSICAL - физическое лицо.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation>SELF_EMPLOYED - индивидуальный предприниматель.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="BusinessEntityList">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий список ХС.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="businessEntity" type="tns:BusinessEntity" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BEModificationOperation">
+    <xs:annotation>
+      <xs:documentation>Операция внесения изменений в реестр ХС.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" type="bs:RegisterModificationType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Тип операции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="affectedList" type="tns:BusinessEntityList" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Входящие записи для операции.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="resultingList" type="tns:BusinessEntityList" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Получаемые в результате операции записи.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="reason" type="tns:BEModificationReason" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Причина изменений записи в реестре ХС.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="BEModificationReason">
+    <xs:annotation>
+      <xs:documentation>Причина изменений записи в реестре ХС.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:complexType name="BEActivityLocationsModificationOperation">
+    <xs:annotation>
+      <xs:documentation>Операция изменения связи между хозяйствующим субъектом и предприятиями.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" type="bs:RegisterModificationType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Тип операции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="businessEntity" type="tns:BusinessEntity" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Хозяйствующий субъект.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="enterpriseList" type="tns:EnterpriseList" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Список предприятий, для которых должна измениться привязка к хозяйствующему субъекту.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ENTModificationOperation">
+    <xs:annotation>
+      <xs:documentation>Операция внесения изменений в реестр предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" type="bs:RegisterModificationType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Тип операции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="affectedList" type="tns:EnterpriseList" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Входящие записи для операции.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="resultingList" type="tns:EnterpriseList" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Получаемые в результате операции записи.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="reason" type="tns:ENTModificationReason" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Причина изменений записи в реестре предприятий.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ENTModificationReason">
+    <xs:annotation>
+      <xs:documentation>Причина изменений записи в реестре предприятий.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+</xs:schema>

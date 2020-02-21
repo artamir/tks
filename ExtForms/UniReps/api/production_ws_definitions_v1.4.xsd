@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://api.vetrf.ru/schema/cdm/argus/production/ws-definitions" elementFormDefault="qualified" version="1.4" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bs="http://api.vetrf.ru/schema/cdm/base" xmlns:pro="http://api.vetrf.ru/schema/cdm/argus/production" xmlns:ent="http://api.vetrf.ru/schema/cdm/cerberus/enterprise">
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/base" schemaLocation="base_v1.4.xsd"/>
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/argus/production" schemaLocation="production_v1.4.xsd"/>
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/cerberus/enterprise" schemaLocation="enterprise_v1.4.xsd"/>
+  <xs:element name="getProductByGuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получения продукции по глобальному идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:guid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Глобальный идентификатор, по которому проводится поиск записи.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductByGuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения продукции по
+                глобальному идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:product" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Найденная по глобальному идентификатору запись продукции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductByUuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение записи продукции по идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:uuid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Идентификатор записи, по которому проводится поиск.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductByUuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения записи продукции по идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:product" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Найденая по идентификатору запись продукции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductByTypeListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получения списка активных записей продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="pro:productType" maxOccurs="1" minOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Идентификатор типа продукта, по которому будет осуществлен поиск.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductByTypeListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка активных записей продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:productList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список записей продукции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductChangesListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка изменившихся записей продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="bs:updateDateInterval" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Интервал времени обновления. В список попадают
+                            все записи, дата обновлений которых попадает в указанный интервал.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductChangesListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка изменений записей продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:productList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список записей типов продукции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSubProductByGuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получения вида продукции по глобальному идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:guid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Глобальный идентификатор,
+                            по которому проводится поиск записи.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSubProductByGuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения вида продукции по глобальному идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:subProduct" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Найденный по глобальному идентификатору запись вида продукции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSubProductByUuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение записи вида продукции по
+                идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:uuid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Идентификатор записи, по которому проводится
+                            поиск.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSubProductByUuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения записи видов продукции
+                по идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:subProduct" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Найденая по идентификатору запись вида продукции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSubProductByProductListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получения списка активных записей видов
+                продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="pro:productGuid" maxOccurs="1" minOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Идентификатор продукта, по которому будет осуществлен поиск.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSubProductByProductListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка активных записей
+                видов продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:subProductList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список записей видов продукции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSubProductChangesListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка изменившихся записей
+                видов продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="bs:updateDateInterval" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Интервал времени обновления. В список попадают
+                            все записи, дата обновлений которых попадает в указанный интервал.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSubProductChangesListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка изменений записей видов продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:subProductList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список записей видов продукции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductItemByGuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получения наименований продукции по глобальному идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:guid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Глобальный идентификатор, по которому проводится поиск записи.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductItemByGuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения наименований продукции по
+                глобальному идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:productItem" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Найденная по глобальному идентификатору запись наименований продукции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductItemByUuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение записи наименований продукции по идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:uuid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Идентификатор записи, по которому проводится поиск.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductItemByUuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения записи наименований продукции по идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:productItem" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Найденая по идентификатору запись наименований продукции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductItemListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получения списка активных записей наименований продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="pro:subProductGuid" maxOccurs="1" minOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида продуктции, по которому будет осуществлен поиск.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="ent:enterpriseGuid" maxOccurs="1" minOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Идентификатор предприятия производителя.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductItemListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка активных записей наименований продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:productItemList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список записей наименований продукции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductItemChangesListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка изменившихся записей наименований продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="bs:updateDateInterval" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Интервал времени обновления. В список попадают
+                            все записи, дата обновлений которых попадает в указанный интервал.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="ent:enterpriseGuid" maxOccurs="1" minOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Идентификатор предприятия производителя.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getProductItemChangesListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка изменений записей наименований продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pro:productItemList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список записей типов наименований продукции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

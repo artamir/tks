@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://api.vetrf.ru/schema/cdm/cerberus/business-entity/ws-definitions" elementFormDefault="qualified" version="1.4" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bs="http://api.vetrf.ru/schema/cdm/base" xmlns:be="http://api.vetrf.ru/schema/cdm/cerberus/enterprise">
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/base" schemaLocation="base_v1.4.xsd"/>
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/cerberus/enterprise" schemaLocation="enterprise_v1.4.xsd"/>
+  <xs:element name="getBusinessEntityByGuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение записи ХС по глобальному идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:guid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Глобальный идентификатор, по которому проводится поиск записи.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getBusinessEntityByGuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения записи ХС по глобальному идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="be:businessEntity" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Запись ХС.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getBusinessEntityByUuidRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение записи ХС по идентфикатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:uuid" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Идентификатор, по которому производится поиск записи.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getBusinessEntityByUuidResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения записи ХС по идентификатору.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="be:businessEntity" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Запись ХС.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getBusinessEntityListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка ХС.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="be:businessEntity" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Параметр фильтрации ХС.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getBusinessEntityListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка ХС.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="be:businessEntityList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список ХС.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getBusinessEntityChangesListRequest">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка изменившихся записей ХС.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="bs:listOptions" maxOccurs="1" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Параметры запрашиваемого списка.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="bs:updateDateInterval" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Интервал времени обновления. В список попадают
+                            все записи, дата обновлений которых попадает в указанный интервал.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getBusinessEntityChangesListResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на запрос получения списка изменений записей ХС.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="be:businessEntityList" minOccurs="1" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>Список записей ХС.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://api.vetrf.ru/schema/cdm/argus/production" elementFormDefault="qualified" version="1.4" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://api.vetrf.ru/schema/cdm/argus/production" xmlns:bs="http://api.vetrf.ru/schema/cdm/base" xmlns:ent="http://api.vetrf.ru/schema/cdm/cerberus/enterprise">
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/base" schemaLocation="base_v1.4.xsd"/>
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/cerberus/enterprise" schemaLocation="enterprise_v1.4.xsd"/>
+  <xs:element name="productType" type="tns:ProductType"/>
+  <xs:element name="productGuid" type="tns:UUID"/>
+  <xs:element name="subProductGuid" type="tns:UUID"/>
+  <xs:element name="product" type="tns:Product"/>
+  <xs:element name="productList" type="tns:ProductList"/>
+  <xs:element name="subProduct" type="tns:SubProduct"/>
+  <xs:element name="subProductList" type="tns:SubProductList"/>
+  <xs:element name="productItem" type="tns:ProductItem"/>
+  <xs:element name="productItemList" type="tns:ProductItemList"/>
+  <xs:complexType name="ProductItem">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий cведения о наименовании продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericVersioningEntity">
+        <xs:sequence>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Наименование продукции.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="code" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Артикул (код) продукции.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="productType" type="tns:ProductType" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Тип продукции.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="product" type="tns:Product" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Продукция.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="subProduct" type="tns:SubProduct" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Вид продукции.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="correspondToGost" type="xs:boolean" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Соответствует ли ГОСТу.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="gost" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>ГОСТ.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ProductType">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий тип продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>Мясо и мясопродукты</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>Корма и кормовые добавки</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation>Живые животные</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation>Лекарственные средства</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="5">
+        <xs:annotation>
+          <xs:documentation>Пищевые продукты</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="6">
+        <xs:annotation>
+          <xs:documentation>Непищевые продукты и другое</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="7">
+        <xs:annotation>
+          <xs:documentation>Рыба и морепродукты</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="8">
+        <xs:annotation>
+          <xs:documentation>Продукция, не требующая разрешения</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Product">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий продукцию.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericVersioningEntity">
+        <xs:sequence>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Название.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="code" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Код ТНВЭД.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="englishName" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Английское название.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="productType" type="tns:ProductType" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Тип продукции, которому относится данная продукция.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SubProduct">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий вид продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericVersioningEntity">
+        <xs:sequence>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Название.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="code" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Код ТНВЭД.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="englishName" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Английское название.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="productGuid" type="bs:UUID" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Глобальный идентификатор продукции, которому относится
+                                данный вид продукции.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ProductList">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий список продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="product" type="tns:Product" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SubProductList">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий список видов продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="subProduct" type="tns:SubProduct" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ProductItemList">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий список наименование продукции.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="productItem" type="tns:ProductItem" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PSLModificationOperation">
+    <xs:annotation>
+      <xs:documentation>Операция внесения изменений в реестр наименований продукции производителя.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" type="bs:RegisterModificationType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Тип операции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="enterprise" type="ent:Enterprise" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Производитель.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="affectedList" type="tns:ProductItemList" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Входящие записи для операции.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="resultingList" type="tns:ProductItemList" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Получаемые в результате операции записи.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="UUID">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий уникальный идентификатор любой
+            сущности системы.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

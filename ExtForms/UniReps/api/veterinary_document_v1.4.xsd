@@ -1,0 +1,1056 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<xs:schema targetNamespace="http://api.vetrf.ru/schema/cdm/mercury/vet-document"
+           xmlns="http://www.w3.org/2001/XMLSchema"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://api.vetrf.ru/schema/cdm/mercury/vet-document"
+           xmlns:bs="http://api.vetrf.ru/schema/cdm/base"
+           xmlns:ikar="http://api.vetrf.ru/schema/cdm/ikar"
+           xmlns:argc="http://api.vetrf.ru/schema/cdm/argus/common"
+           xmlns:shp="http://api.vetrf.ru/schema/cdm/argus/shipment"
+           xmlns:ent="http://api.vetrf.ru/schema/cdm/cerberus/enterprise"
+           xmlns:prod="http://api.vetrf.ru/schema/cdm/argus/production"
+           elementFormDefault="qualified" version="1.4">
+
+   <xs:import namespace="http://api.vetrf.ru/schema/cdm/base" schemaLocation="base_v1.4.xsd"/>
+   <xs:import namespace="http://api.vetrf.ru/schema/cdm/ikar" schemaLocation="ikar_v1.4.xsd"/>
+   <xs:import namespace="http://api.vetrf.ru/schema/cdm/argus/common" schemaLocation="argus_common_v1.4.xsd"/>
+   <xs:import namespace="http://api.vetrf.ru/schema/cdm/argus/shipment" schemaLocation="argus_shipment_v1.4.xsd"/>
+   <xs:import namespace="http://api.vetrf.ru/schema/cdm/cerberus/enterprise" schemaLocation="enterprise_v1.4.xsd"/>
+   <xs:import namespace="http://api.vetrf.ru/schema/cdm/argus/production" schemaLocation="production_v1.4.xsd"/>
+
+   <!-- ELEMENT DEFINITIONS -->
+   <xs:element name="vetDocumentType" type="tns:VetDocumentType"/>
+   <xs:element name="vetDocumentStatus" type="tns:VetDocumentStatus"/>
+   <xs:element name="vetDocument" type="tns:VetDocument"/>
+   <xs:element name="vetDocumentList" type="tns:VetDocumentList"/>
+   <xs:element name="stockEntry" type="tns:StockEntry"/>
+   <xs:element name="stockEntryList" type="tns:StockEntryList"/>
+
+   <!-- TYPE DEFINITIONS -->
+   <xs:complexType name="VetDocument">
+      <xs:annotation>
+         <xs:documentation>Ветеринарный сопроводительный документ.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="bs:GenericEntity">
+            <xs:sequence>
+               <xs:element name="issueSeries" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Серия документа.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="issueNumber" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Номер документа.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="issueDate" type="xs:date" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Дата документа.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="form" type="tns:VetDocumentForm" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Форма ВСД.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="type" type="tns:VetDocumentType" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Тип ВСД.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="status" type="tns:VetDocumentStatus" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Статус ВСД на момент подписания.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="finalized" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Флаг того, что сертификат закрыт.
+                        Имеет смысл только для производственных сертификатов в статусе "Оформлен" (CONFIRMED).
+                        В случае незавершенного производства оформленный производственный сертификат остаётся незакрытым
+                        до момента завершения производства (до завершения производственной транзакции).
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="consignor" type="ent:BusinessMember" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения об отправителе (владельце).</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="consignee" type="ent:BusinessMember" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о получателе груза.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="batch" type="tns:Batch" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о партии продукции.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="productName" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Наименование продукции в соответствии с оформленной товарной накладной.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="productCode" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Артикул (код) продукции в соответствии с оформленной товарной накладной.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="purpose" type="argc:Purpose" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Цель. Назначение груза.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="broker" type="ent:BusinessEntity" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о фирме-посреднике.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="transportInfo" type="shp:TransportInfo" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о транспорте.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="transportStorageType" type="shp:TransportationStorageType" minOccurs="0"
+                           maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Способ хранения при перевозке.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="cargoReloadingPointList" type="shp:ShipmentRoute" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о маршруте следования (пунктах перегрузки).</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="waybillSeries" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Серия документа.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="waybillNumber" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Номер документа.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="waybillDate" type="xs:date" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Дата документа.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="waybillType" type="shp:WaybillType" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Тип товарно-транспортной накладной.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="cargoInspected" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Осуществлен контроль гос.ветврачом на соответствие требованиям.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="cargoExpertized" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Проводилась ли ветсанэкспертиза.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="expertiseInfo" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о проведенных лабораторных исследованиях.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="confirmedBy" type="argc:User" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Государственный ветврач, подписавший ВСД.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="confirmedDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Дата оформления ВСД.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="locationProsperity" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Благополучие местности.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="animalSpentPeriod" type="tns:AnimalSpentPeriod" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Нахождение животных на территории ТС.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="monthsSpent" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Количество месяцев нахождения животных на территории ТС.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="quarantinePlace" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Место карантинирования.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="quarantineDays" type="xs:int" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Количество дней карантинирования.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="immunizationInfo" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о проведенной иммунизации животных.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="precedingVetDocuments" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о предыдущих ветеринарных сопроводительных документах.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="importPermit" type="argc:Document" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о ветеринарном разрешении на ввоз (для импортируемой
+                        продукции).
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="transferPermit" type="argc:Document" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о ветеринарном разрешении управления ветеринарии субъекта РФ на
+                        перемещение продукции в другой субъект.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="specialMarks" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Особые отметки.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="withdrawedBy" type="argc:User" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Инспектор, аннулировавший ВСД.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="withdrawDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Дата и время аннулирования ВСД.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="withdrawReason" type="tns:WithdrawReason" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Причина аннулирования ВСД.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="utilizedBy" type="argc:User" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Инспектор, погасивший ВСД.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="utilizeDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Дата и время гашения ВСД.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="finalizeDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>
+                        Дата и время закрытия производственного сертификата.
+                        Имеет смысл только для производственных сертификатов в статусе "Оформлен" (CONFIRMED).
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="lastUpdateDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>
+                        Дата и время последнего обновления сертификата.
+                        Дата обновления изменяется при изменении статуса сертификата,
+                        а также при обновлении объёма производственного сертификата в случае незавершенного производства.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="for" type="xs:IDREF" use="optional">
+               <xs:annotation>
+                  <xs:documentation>Ссылка на consignment (или batch) в запросе.
+                     Может отсутствовать, если consignment (batch) только один.
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="Batch">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий партию груза.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="productType" type="prod:ProductType" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Тип продукции.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="product" type="prod:Product" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Продукция.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="subProduct" type="prod:SubProduct" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Вид продукции.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="productItem" type="prod:ProductItem" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Наименование продукции согласно номенклатуре производителя.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="volume" type="bs:Decimal" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Объём груза.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="unit" type="argc:Unit" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Единица измерения объёма груза.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="packingList" type="argc:PackingFormList" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Вид упаковки.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="packingAmount" type="xs:int" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Количество единиц упаковки (количество мест).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="dateOfProduction" type="tns:GoodsDate" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Дата производства (выработки).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="expiryDate" type="tns:GoodsDate" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Дата окончания срока годности.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="productionOperationId" type="bs:Identifier" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Идентификатор производственной транзакции,
+                  в результате которой была выработана эта партия продукции.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="perishable" type="xs:boolean" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Скоропортящаяся продукция.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="countryOfOrigin" type="ikar:Country" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Страна происхождения продукции.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="producerList" type="ent:ProducerList" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Список производителей продукции.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="productMarkingList" type="tns:ProductMarkingList" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Маркировка продукции.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="lowGradeCargo" type="xs:boolean" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Является ли продукция некачественной.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="owner" type="ent:BusinessEntity" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Собственник продукции.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="Consignment">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий транспортную партию груза.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="tns:Batch">
+            <xs:sequence>
+               <xs:element name="productName" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Наименование продукции в соответствии с оформленной товарной накладной.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="productCode" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Артикул (код) продукции в соответствии с оформленной товарной накладной.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="sourceStockEntry" type="tns:StockEntry" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Запись журнала, из которой формируется транспортная партия.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID" use="optional">
+               <xs:annotation>
+                  <xs:documentation>Идентификатор, определяющий consignment в запросе.
+                     Должен быть указан, если запрос содержит несколько элементов consignment.
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="partOf" type="xs:IDREF" use="optional">
+               <xs:annotation>
+                  <xs:documentation>Ссылка на consignment в разделе delivery запроса.
+                     Должен быть указан, если запрос содержит несколько элементов consignment.
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="RawBatch">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий сырьё для производственной партии.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="sourceStockEntry" type="tns:StockEntry" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>
+                  Запись журнала, которая используется в качестве сырья. Должен быть указан обязательно.
+                  В случае, если сырьё указывается для незавершенной производственной транзакции,
+                  следующие поля (volume, unit, packingList, packingAmount) могут быть не заполнены
+                  до окончательного завершения транзакции (см. ProductionOperation/finalizeOperation),
+                  если отсутствует возможность точно определить использованный объём в момент выпуска партии продукции.
+                  Таким образом, в ещё не закрытом производственном сертификате уже будет указано использованное сырьё
+                  без указания конкретного объёма, т.е. реализована прослеживаемость.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="volume" type="bs:Decimal" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Объём сырья.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="unit" type="argc:Unit" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Единица измерения объёма груза.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="packingList" type="argc:PackingFormList" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Вид упаковки.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="packingAmount" type="xs:int" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Количество единиц упаковки (количество мест).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="ProductiveBatch">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий транспортную партию груза.
+            При оформлении незавершенного производства важно: если очередной запрос RegisterProductiveBatchRequest
+            содержит сведения о выработанной продукции с указанным номером партии (Batch/productMarkingList/productMarking(class=BATCHNO)),
+            и ранее в рамках этой же производственной транзакции уже была оформлена выработанная продукция с тем же
+            номером партии,
+            то вновь выработанный объём продукции будет оприходован на ту же запись складского журнала с увеличением её
+            объёма
+            (т.е. будет выполнено автоматическое присоединение записей журнала, guid записи журнала останется прежним).
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="tns:Batch">
+            <xs:attribute name="id" type="xs:ID" use="optional">
+               <xs:annotation>
+                  <xs:documentation>Идентификатор, определяющий batch в запросе.
+                     Должен быть указан, если запрос содержит несколько элементов batch.
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="ProductionOperation">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий производственную операцию.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="operationId" type="bs:Identifier" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Идентификатор производственной транзакции (производственная смена, сутки и т.п.).
+                  Важно, что в рамках одной производственной транзакции всё указанное сырьё
+                  будет соотнесено со всеми выработанными партиями продукции.
+                  Сведения о списанном в производство сырье и произведенных партиях продукции
+                  для транзакции с определенным operationId могут быть переданы в нескольких запросах
+                  RegisterProductiveBatchRequest.
+                  Если operationId в запросе не указан, то такая транзакция будет завершена автоматически
+                  по результам выполнения запроса. Т.е. в этом случае формат запроса и поведение системы аналогичны
+                  версии Ветис API v1.3.
+                  Важно, внесенные сведения о списанном в производство сырье и произведенных партиях продукции
+                  невозможно отредактировать очередным запросом RegisterProductiveBatchRequest с тем же идентификатором
+                  производственной транзакции. Сведения, указанные в каждом следующем запросе будут добавлены к
+                  производственной транзакции.
+                  Запрос будет отклонен, если транзакция с указанным в operationId идентификатором завершена.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="rawBatch" type="tns:RawBatch" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Партия сырья.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="productiveBatch" type="tns:ProductiveBatch" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Производственная партия.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="finalizeOperation" type="xs:boolean" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Флаг, который определяет, что по результатам выполнения запроса
+                  производственная транзакция с идентификатором, указанным в элементе operationId,
+                  будет завершена (finalizeOperation=TRUE). После того, как транзакция завершена,
+                  внесение сведений о списанном в производство сырье и произведенных партиях продукции невозможно.
+                  Флаг имеет смысл только при наличии элемента operationId в запросе, иначе игнорируется.
+                  Транзакцию нельзя завершить, если для указанного сырья (rawBatch) суммарный списанный в производство
+                  объём равен нулю.
+                  Производственная транзакция должна быть завершена по окончанию технологического процесса производства.
+                  Пока производственная транзакция остаётся незавершенной, все соответствующие ей производственные
+                  сертификаты
+                  на выработанный объём продукции будут оставаться незакрытыми.
+                  При завершении производственной транзакции все соответствующие ей производственные сертификаты
+                  на выработанный объём продукции автоматически закрываются.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="Delivery">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий поставку.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="bs:GenericEntity">
+            <xs:sequence>
+               <xs:element name="deliveryDate" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+               <xs:element name="consignor" type="ent:BusinessMember" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения об отправителе (владельце).</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="consignee" type="ent:BusinessMember" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о получателе груза.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="consignment" type="tns:Consignment" minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о транспортной партии.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="accompanyingForms" type="tns:ConsignmentDocumentList" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сопроводительные документы.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="DeliveryFactList">
+      <xs:annotation>
+         <xs:documentation>Сведения о контроле партии.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="vetCertificatePresence" type="argc:DocumentNature" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="docInspection" type="tns:DeliveryInspection" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="vetInspection" type="tns:DeliveryInspection" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="decision" type="tns:DeliveryDecision" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:simpleType name="DeliveryDecision">
+      <xs:annotation>
+         <xs:documentation>Решение по поставке.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="bs:String255">
+         <xs:enumeration value="ACCEPT_ALL">
+            <xs:annotation>
+               <xs:documentation>Принять всю поставку.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="PARTIALLY">
+            <xs:annotation>
+               <xs:documentation>Принять часть груза, на оставшуюся оформить возврат.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="RETURN_ALL">
+            <xs:annotation>
+               <xs:documentation>Оформить возврат на всю поставку.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="DeliveryInspection">
+      <xs:annotation>
+         <xs:documentation>Контроль поставки (документарный, ветеринарный)</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="responsible" type="argc:User" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="result" type="tns:DeliveryInspectionResult" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="info" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:simpleType name="DeliveryInspectionResult">
+      <xs:annotation>
+         <xs:documentation>Результат контроля поставки</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="bs:String255">
+         <xs:enumeration value="CORRESPONDS">
+            <xs:annotation>
+               <xs:documentation>Груз соответствует сведениям, заявленным в документах.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="MISMATCH">
+            <xs:annotation>
+               <xs:documentation>Груз отличается от сведений, указанных в сопроводительных документах.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="UNSUPERVISED">
+            <xs:annotation>
+               <xs:documentation>Контроль не проводился.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="ConsignmentDocumentList">
+      <xs:annotation>
+         <xs:documentation>Контроль поставки (документарный, ветеринарный)</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="waybill" type="shp:Waybill" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="vetCertificate" type="tns:VetDocument" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="GoodsDate">
+      <xs:sequence>
+         <xs:element name="firstDate" type="bs:ComplexDate" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="secondDate" type="bs:ComplexDate" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="informalDate" type="bs:String255" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="ProductMarkingList">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий список маркировок продукции.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="productMarking" type="tns:ProductMarking" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="ProductMarking">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий список маркировок продукции.</xs:documentation>
+      </xs:annotation>
+      <simpleContent>
+         <extension base="bs:String255">
+            <attribute name="class" type="tns:ProductMarkingClass" use="optional" default="UNDEFINED"/>
+         </extension>
+      </simpleContent>
+   </xs:complexType>
+
+   <xs:simpleType name="ProductMarkingClass">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий тип маркировки.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="bs:String255">
+         <xs:enumeration value="UNDEFINED">
+            <xs:annotation>
+               <xs:documentation>Класс неопределен.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="BN">
+            <xs:annotation>
+               <xs:documentation>Номер партии.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="SSCC">
+            <xs:annotation>
+               <xs:documentation>SSCC-код.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="VetDocumentForm">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий форму ВСД.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="bs:String255">
+         <xs:enumeration value="CERTCU1">
+            <xs:annotation>
+               <xs:documentation>Форма 1 ветеринарного сертификата ТС</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="LIC1">
+            <xs:annotation>
+               <xs:documentation>Форма 1 ветеринарного свидетельства</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="CERTCU2">
+            <xs:annotation>
+               <xs:documentation>Форма 2 ветеринарного сертификата ТС</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="LIC2">
+            <xs:annotation>
+               <xs:documentation>Форма 2 ветеринарного свидетельства</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="CERTCU3">
+            <xs:annotation>
+               <xs:documentation>Форма 3 ветеринарного сертификата ТС</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="LIC3">
+            <xs:annotation>
+               <xs:documentation>Форма 3 ветеринарного свидетельства</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="NOTE4">
+            <xs:annotation>
+               <xs:documentation>Форма 4 ветеринарной справки</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="CERT5I">
+            <xs:annotation>
+               <xs:documentation>Форма 5i ветеринарного сертификата</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="CERT61">
+            <xs:annotation>
+               <xs:documentation>Форма 6.1 ветеринарного сертификата</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="CERT62">
+            <xs:annotation>
+               <xs:documentation>Форма 6.2 ветеринарного сертификата</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="CERT63">
+            <xs:annotation>
+               <xs:documentation>Форма 6.3 ветеринарного сертификата</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="PRODUCTIVE">
+            <xs:annotation>
+               <xs:documentation>Форма производственного ветеринарного сертификата</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="VetDocumentList">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий список ВСД.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="bs:EntityList">
+            <xs:sequence>
+               <xs:element name="vetDocument" type="tns:VetDocument" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:simpleType name="VetDocumentType">
+      <xs:annotation>
+         <xs:documentation>Тип ветсертификата.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="bs:String255">
+         <xs:enumeration value="TRANSPORT">
+            <xs:annotation>
+               <xs:documentation>Транспортный</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="PRODUCTIVE">
+            <xs:annotation>
+               <xs:documentation>Производственный</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="RETURNABLE">
+            <xs:annotation>
+               <xs:documentation>Возвратный</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="INCOMING">
+            <xs:annotation>
+               <xs:documentation>Входящий</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="OUTGOING">
+            <xs:annotation>
+               <xs:documentation>Исходящий</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="VetDocumentStatus">
+      <xs:annotation>
+         <xs:documentation>Статус ветсертификата.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="bs:String255">
+         <xs:enumeration value="CREATED">
+            <xs:annotation>
+               <xs:documentation>Создан. Неоформленный проект сертификата</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="CONFIRMED">
+            <xs:annotation>
+               <xs:documentation>Оформлен. Действующий сертификат, по которому разрешено совершать транзакцию с
+                  грузом.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="WITHDRAWN">
+            <xs:annotation>
+               <xs:documentation>Аннулирован. Не действующий более сертификат.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="UTILIZED">
+            <xs:annotation>
+               <xs:documentation>Погашен. Действующий сертификат, по которому транзакция уже была совершена.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="AnimalSpentPeriod">
+      <xs:annotation>
+         <xs:documentation>Сколько времени животные находились на территории ТС.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="bs:String255">
+         <xs:enumeration value="FROM_BIRTH">
+            <xs:annotation>
+               <xs:documentation>Животные находились на территории ТС с рождения</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="NOT_LESS_SIX_MONTHS">
+            <xs:annotation>
+               <xs:documentation>Животные находились на территории ТС не менее 6 месяцев</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="IN_MONTHS">
+            <xs:annotation>
+               <xs:documentation>Животные находились на территории ТС указанное кол-во месяцев</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="ZERO">
+            <xs:annotation>
+               <xs:documentation>Животные не находились на территории ТС</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="DiscrepancyReport">
+      <xs:annotation>
+         <xs:documentation>Акт о несоответствии.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="issueSeries" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Серия документа.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="issueNumber" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Номер документа.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="issueDate" type="xs:date" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Дата документа.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="reason" type="tns:DiscrepancyReason" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Причина несоответствия.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Детальное описание.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="for" type="xs:IDREF" use="optional">
+         <xs:annotation>
+            <xs:documentation>Ссылка на stockDiscrepancy (или consignment) в запросе.
+               Может отсутствовать, если stockDiscrepancy (или consignment) только один.
+            </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+
+   <xs:complexType name="DiscrepancyReason">
+      <xs:annotation>
+         <xs:documentation>Причина несоответствия.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="bs:GenericEntity">
+            <xs:sequence>
+               <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Название причины.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="StockEntry">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий cведения о записи журнала продукции.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="bs:GenericVersioningEntity">
+            <xs:sequence>
+               <xs:element name="entryNumber" type="tns:StockEntryNumber" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Номер записи в складском журнале Меркурия.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="batch" type="tns:Batch" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>Сведения о партии продукции.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="vetDocument" type="tns:VetDocument" minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>Ветеринарный сопроводительный документ.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="StockEntryList">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий список записей журнала.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="bs:EntityList">
+            <xs:sequence>
+               <xs:element name="stockEntry" type="tns:StockEntry" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="MergeStockEntriesOperation">
+      <xs:annotation>
+         <xs:documentation>Тип, описывающий производственную операцию.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="type" type="bs:RegisterModificationType" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Тип операции. Поддерживается два типа: MERDGE и ATTACH.
+                  Если элемент не указан, по умолчанию значение принимается равным MERDGE.
+                  В случае присоединения записей (ATTACH) главной записью журнала (к которой осуществляется присоединение),
+                  будет считать первая запись sourceStockEntry из списка.
+                  В случае присоединения элемент batch не указывается, результирующая запись журнала будет иметь
+                  то же наименование продукции, что и главная. Объём и количество упаковок будет просуммировано,
+                  виду упаковки, номера партий логически объединены в список.
+                  Результирующая запись журнала продукции будет иметь тот же GUID, что и главная.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="sourceStockEntry" type="tns:StockEntry" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Объединяемая запись журнала</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="batch" type="tns:Batch" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Партия, полученная в результате объединения.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:simpleType name="WithdrawReason">
+      <xs:annotation>
+         <xs:documentation>Причина аннулирования ветеринарного сертификата.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="StockDiscrepancy">
+      <xs:annotation>
+         <xs:documentation>Операция внесения изменений в реестр предприятий.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="affectedList" type="tns:StockEntryList" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Входящие записи для операции. Deprecated.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="resultingList" type="tns:StockEntryList" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Получаемые в результате операции записи.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="reason" type="xs:string" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>Причина несоответствия.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID" use="optional">
+         <xs:annotation>
+            <xs:documentation>Идентификатор, определяющий stockDiscrepancy в запросе.
+               Должен быть указан, если запрос содержит несколько элементов stockDiscrepancy.
+            </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+
+   <simpleType name="StockEntryNumber">
+      <annotation>
+         <documentation>Тип номера записи складского журнала.</documentation>
+      </annotation>
+      <restriction base="xs:string">
+         <pattern value="\d+"/>
+      </restriction>
+   </simpleType>
+</xs:schema>

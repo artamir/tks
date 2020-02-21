@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://api.vetrf.ru/schema/cdm/argus/common" elementFormDefault="qualified" version="1.4" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://api.vetrf.ru/schema/cdm/argus/common" xmlns:bs="http://api.vetrf.ru/schema/cdm/base">
+  <xs:import namespace="http://api.vetrf.ru/schema/cdm/base" schemaLocation="base_v1.4.xsd"/>
+  <xs:element name="purpose" type="tns:Purpose"/>
+  <xs:element name="purposeList" type="tns:PurposeList"/>
+  <xs:element name="unit" type="tns:Unit"/>
+  <xs:element name="unitList" type="tns:UnitList"/>
+  <xs:complexType name="Document">
+    <xs:annotation>
+      <xs:documentation>Документ.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericEntity">
+        <xs:sequence>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Название документа.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="form" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Форма документа.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="issueSeries" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Серия документа.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="issueNumber" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Номер документа.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="issueDate" type="xs:date" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Дата документа.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="DocumentNature">
+    <xs:annotation>
+      <xs:documentation>Природа (тип) документа</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="bs:String255">
+      <xs:enumeration value="ELECTRONIC">
+        <xs:annotation>
+          <xs:documentation>Электронный документ</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PAPER">
+        <xs:annotation>
+          <xs:documentation>Бумажный документ</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="User">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий пользователя.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericEntity">
+        <xs:sequence>
+          <xs:element name="fio" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>ФИО пользователя.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="post" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Должность пользователя.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="phone" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Контактный телефон пользователя.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="email" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Адрес электронной почты пользователя.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="login" type="xs:NCName" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Имя пользователя в системе Ветис.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Purpose">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий назначение груза.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericVersioningEntity">
+        <xs:sequence>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Наименование назначение.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="forSubstandard" type="xs:boolean" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Назначение для некачественных грузов.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Unit">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий единицу измерения.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericVersioningEntity">
+        <xs:sequence>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Наименование единицы измерения.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="fullName" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Полное наименование единицы измерения, если оно отличается
+                        от name.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="commonUnitGuid" type="bs:UUID" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Глобальный идентификатор базовой единицы измерения.
+                        Например, для центнера, тонны, тыс.тонн базовой единицей измерения является
+                        килограмм.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="factor" type="xs:integer" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Коэффициент относительно базовой единицы измерения.
+                        Например, для тонны этот коэффициент равен 1000, т.к. в 1 тонне 1000 кг.
+                        Для килограмма этот коэффициент равен единице.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PackingForm">
+    <xs:annotation>
+      <xs:documentation>Упаковка</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:GenericEntity">
+        <xs:sequence>
+          <xs:element name="name" type="bs:String255" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Наименование упаковки.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PurposeList">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий список целей.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="purpose" type="tns:Purpose" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UnitList">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий список единиц измерений.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="bs:EntityList">
+        <xs:sequence>
+          <xs:element name="unit" type="tns:Unit" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PackingFormList">
+    <xs:annotation>
+      <xs:documentation>Тип, описывающий список форм упаковки.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="packingForm" type="tns:PackingForm" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
